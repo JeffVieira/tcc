@@ -36,6 +36,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'adminlte-rails', '~> 1.3.3'
 
+gem 'simple_form'
+gem 'country_select', '~> 2.1.1'
 group :development, :test do
 
   gem 'adminlte-generators'

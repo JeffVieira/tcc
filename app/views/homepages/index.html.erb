@@ -1,2 +1,4 @@
-<%%>
-<%  %>
+<%= simple_form_for(@user, html: { class: 'form-horizontal' }) do |f| %>
+  <%= f.input_field :name, placeholder:"Busca global.", hint: true, input_html: { maxlength: 20 } %>
+  <%= f.hint 'No special characters, please!' %>
+<% end %>

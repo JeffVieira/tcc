@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resource :users
   devise_for :users
   root to: "homepages#index"
   # The priority is based upon order of creation: first created -> highest priority.
