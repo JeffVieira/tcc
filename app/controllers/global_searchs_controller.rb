@@ -1,0 +1,2 @@
+class GlobalSearchsController < ApplicationController
+end

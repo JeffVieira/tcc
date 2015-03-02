@@ -1,4 +1,8 @@
-<%= simple_form_for(@user, html: { class: 'form-horizontal' }) do |f| %>
-  <%= f.input_field :name, placeholder:"Busca global.", hint: true, input_html: { maxlength: 20 } %>
-  <%= f.hint 'No special characters, please!' %>
+<%= simple_form_for(@user, html: { class: 'sidebar-form' }) do |f| %>
+  <div class="input-group">
+    <%= f.input_field :name, placeholder:"Buscar...", hint: true, input_html: { maxlength: 20, class: 'form-control' } %>
+    <span class="input-group-btn">
+      <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
+    </span>
+  </div>
 <% end %>

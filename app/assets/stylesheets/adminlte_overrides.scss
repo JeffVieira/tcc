@@ -7,7 +7,7 @@ body {
       font-family: 'Source Sans Pro', sans-serif;
     }
   }
-} 
+}
 
 .btn.pull-right {
   margin-left: 8px;
@@ -52,5 +52,17 @@ i.glyphicon-sort {
 }
 
 .box-header a.btn {
-  color: #fff;  
+  color: #fff;
+}
+
+aside.container{
+  margin-right:auto;
+  margin-left:auto;
+  padding-left:15px;
+  padding-right:15px;
+}
+
+.actions {
+  padding-top: 10px;
+  padding-bottom: 10px;
 }

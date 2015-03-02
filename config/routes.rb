@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+
+  resources :global_searchs
   resource :users
   devise_for :users
   root to: "homepages#index"
