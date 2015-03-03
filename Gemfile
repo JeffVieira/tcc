@@ -38,20 +38,30 @@ gem 'adminlte-rails', '~> 1.3.3'
 
 gem 'simple_form'
 gem 'country_select', '~> 2.1.1'
+
+gem 'breadcrumbs_on_rails', '2.3.0'
+
+gem 'will_paginate', '3.0.6'
+gem 'will_paginate-bootstrap', '1.0.1'
 group :development, :test do
 
   gem 'adminlte-generators'
-  gem 'pry', '~> 0.9.0'
-  gem 'pry-nav'
-  gem 'pry-doc'
+  #gem 'rspec'
   gem 'rspec-rails'
-  gem 'factory_girl_rails'
+  #gem 'rspec-expectations'
+  #gem 'rspec-collection_matchers'
   gem 'database_cleaner'
+  #gem 'simplecov'
+  gem 'factory_girl_rails'
+  gem 'pry', '0.9.12.6'
+  gem 'pry-nav', '0.2.4'
+  gem 'pry-doc', '0.6.0'
+  #gem "factory_girl"
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 
   # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 2.0'
+  #gem 'web-console', '~> 2.0'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'

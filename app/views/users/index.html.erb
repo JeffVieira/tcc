@@ -1,0 +1,30 @@
+<% content_for :content_header  do %>
+  <section class="content-header">
+    <h1>Users <small>#index</small></h1>
+  </section>
+<% end %>
+
+<section class="content invoice">
+  <table class="table">
+    <thead>
+      <th>Nome</th>
+      <th>Email</th>
+      <th></th>
+    </thead>
+
+    <tbody>
+      <% @users.each do |user| %>
+      <tr>
+        <td><%= user.name %></td>
+        <td><%= user.email %></td>
+        <td>
+          <%= edit_buttom(edit_user_path(user)) %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+
+  </table>
+</section>
+
+<%= link_to 'Novo', new_user_path, class:'btn btn-success' %>

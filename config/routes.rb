@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
 
   resources :global_searchs
-  resource :users
-  devise_for :users
+  resources :users
+  #devise_for :users
+  devise_for :users, :path => 'contas', :path_names => { :sign_up => "registrar", :sign_in => "entrar" }
+
   root to: "homepages#index"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
