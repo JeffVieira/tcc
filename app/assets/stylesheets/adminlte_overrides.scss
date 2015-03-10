@@ -66,3 +66,44 @@ aside.container{
   padding-top: 10px;
   padding-bottom: 10px;
 }
+
+.action-table{
+  width: 10%;
+}
+
+.info-box {
+    display: block;
+    min-height: 90px;
+    background: none repeat scroll 0% 0% #FFF;
+    width: 100%;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
+    border-radius: 2px;
+    margin-bottom: 15px;
+}
+
+.bg-aqua, .callout.callout-info, .alert-info, .label-info, .modal-info .modal-body {
+    background-color: #00C0EF !important;
+}
+
+.info-box-content {
+    padding: 5px 10px;
+    margin-left: 90px;
+}
+
+.info-box-icon {
+    border-radius: 2px 0px 0px 2px;
+    display: block;
+    float: left;
+    height: 90px;
+    width: 90px;
+    text-align: center;
+    font-size: 45px;
+    line-height: 90px;
+    background: none repeat scroll 0% 0% rgba(0, 0, 0, 0.2);
+}
+
+.info-box-number {
+    display: block;
+    font-weight: bold;
+    font-size: 18px;
+}

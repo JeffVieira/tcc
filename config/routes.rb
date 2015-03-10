@@ -1,7 +1,13 @@
 Rails.application.routes.draw do
 
+  resources :user_groups
+
   resources :global_searchs
-  resources :users
+  resources :users do
+    collection do
+      match 'search' => 'users#search', via: [:get, :post], as: :search
+    end
+  end
   #devise_for :users
   devise_for :users, :path => 'contas', :path_names => { :sign_up => "registrar", :sign_in => "entrar" }
 

@@ -1,7 +1,5 @@
 <% content_for :content_header  do %>
-  <section class="content-header">
-    <h1>Users</h1>
-  </section>
+  <%= render_breadcrumbs :tag => :li, :separator => "" %>
 <% end %>
 
 <section class="content invoice">
@@ -9,7 +7,7 @@
     <thead>
       <th>Nome</th>
       <th>Email</th>
-      <th></th>
+      <th><%= link_to 'Novo', new_user_path, class:'btn btn-success' %></th>
     </thead>
 
     <tbody>
@@ -19,6 +17,7 @@
         <td><%= user.email %></td>
         <td>
           <%= edit_buttom(edit_user_path(user)) %>
+          <%= destroy_buttom(user) %>
         </td>
       </tr>
       <% end %>
@@ -26,5 +25,3 @@
 
   </table>
 </section>
-
-<%= link_to 'Novo', new_user_path, class:'btn btn-success' %>

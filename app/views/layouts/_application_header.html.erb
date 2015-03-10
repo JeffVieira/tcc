@@ -101,25 +101,23 @@
               <img src="/img/avatar3.png" class="img-circle" alt="User Image" />
               <p>
                 <%= current_user.name %>
-                <small>Membro desde: <%= current_user.created_at %></small>
+                <small>Membro desde: <%= current_user.created_at.to_s_br %></small>
               </p>
             </li>
             <!-- Menu Body -->
             <li class="user-body">
-              <div class="col-xs-4 text-center">
-                <a href="#">Followers</a>
+              <div class="col-xs-6 text-center">
+                <a href="#">CheckOuts</a>
               </div>
-              <div class="col-xs-4 text-center">
-                <a href="#">Sales</a>
-              </div>
-              <div class="col-xs-4 text-center">
-                <a href="#">Friends</a>
+
+              <div class="col-xs-6 text-center">
+                <a href="#">Vencimentos</a>
               </div>
             </li>
             <!-- Menu Footer-->
             <li class="user-footer">
               <div class="pull-left">
-                <a href="#" class="btn btn-default btn-flat">Profile</a>
+                <%= link_to('Conta', edit_user_registration_path, :class=>'btn btn-default btn-flat') %>
               </div>
               <div class="pull-right">
                 <%= link_to('Sair', destroy_user_session_path, :method => :delete, :class=>'btn btn-default btn-flat') %>

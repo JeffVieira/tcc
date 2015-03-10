@@ -1,11 +1,22 @@
 pt_BR:
   activerecord:
     errors:
-      models:
-        environmental_license:
-          attributes:
-            archive:
-              in_between: deve ser menor que %{count}
+    models:
+      user:
+        one: "usuário"
+        other: "usuários"
+      user_group:
+        one: "Grupo de usuário"
+        other: "Grupos de usuário"
+    attributes:
+      user:
+        name: "nome"
+        password: "senha"
+        password_confirmation: "Confirmar senha"
+        current_password: "Senha atual"
+      user_group:
+        name: "nome"
+
 
   date:
     abbr_day_names:

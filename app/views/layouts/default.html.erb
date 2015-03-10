@@ -19,27 +19,21 @@
 </head>
 <body class="skin-blue">
 
-  <% if user_signed_in? %>
-    <%= render "layouts/application_header" %>
-  <% else %>
-    <%= render "layouts/header_user_off" %>
-  <% end %>
+  <%= render "layouts/header_user_off" %>
 
   <div class="wrapper row-offcanvas row-offcanvas-left">
-
-    <%= render partial: "layouts/application_sidebar" if user_signed_in? %>
-
     <aside class="right-side">
       <div class='container'>
 
-        <section class="content-header">
+        <div class="container residuos-body">
           <ol class='breadcrumb'>
             <li><h4>Você está em:</h4></li>
-            <li><%= link_to '',root_path, class:"fa fa-home", title:'home' %></li>
-            <%= yield(:content_header) %>
+            <%= render_breadcrumbs :tag => :li, :separator => "" %>
           </ol>
           <%#= render "layouts/messages" %>
-        </section>
+        </div>
+
+        <%= yield(:content_header) %>
 
         <% flash.each do |name, msg| %>
           <div class="pad margin no-print">
@@ -49,9 +43,9 @@
             <% end %>
           </div>
         <% end %>
-        <div class='row'>
-          <%= yield %>
-        </div>
+          <div class='row'>
+            <%= yield %>
+          </div>
       </div>
     </aside>
   </div>

@@ -1,0 +1,33 @@
+<% content_for :content_header  do %>
+  <%= render_breadcrumbs :tag => :li, :separator => "" %>
+<% end %>
+
+<section class="content">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="box-body table-responsive">
+        <table class="table table-hover">
+          <thead>
+            <th>Nome</th>
+            <th class="action-table">
+              <%= link_to new_user_group_path(@user_group), class:'btn btn-success'  do %>
+                <span class="fa fa-plus"></span>
+                Novo
+              <% end %>
+            </th>
+          </thead>
+          <tbody>
+            <%= content_tag_for(:tr, @user_groups) do |user_group| %>
+              <td><%= user_group.name %></td>
+              <td>
+                <%= edit_buttom(edit_user_group_path(user_group)) %>
+                <%= destroy_buttom(user_group) %>
+              </td>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
