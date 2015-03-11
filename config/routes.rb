@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     end
   end
   #devise_for :users
-  devise_for :users, :path => 'contas', :path_names => { :sign_up => "registrar", :sign_in => "entrar" }
+  devise_for :users, :path => 'contas', :path_names => { :sign_up => "registrar", :sign_in => "entrar" }, :controllers => { :sessions => 'sessions' }
 
   root to: "homepages#index"
   # The priority is based upon order of creation: first created -> highest priority.

@@ -1,8 +1,5 @@
 class UsersController < ApplicationController
 
-  def show
-  end
-
   private
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params

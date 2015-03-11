@@ -36,7 +36,8 @@
           <ol class='breadcrumb'>
             <li><h4>Você está em:</h4></li>
             <li><%= link_to '',root_path, class:"fa fa-home", title:'home' %></li>
-            <%= yield(:content_header) %>
+            <%= render_breadcrumbs :tag => :li, :separator => "" %>
+            <%#= yield(:content_header) %>
           </ol>
           <%#= render "layouts/messages" %>
         </section>

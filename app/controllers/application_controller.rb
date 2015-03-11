@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  include New, Edit, Update, Create, Destroy, Index, Search
+  include Index, New, Edit, Update, Create, Destroy, Search
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   end
 
   def breadrumb_for_actions(description=nil)
-    add_breadcrumb get_model.model_name.human(count: 2), self.controller_path
+    add_breadcrumb get_model.model_name.human(count: 2), "/"+self.controller_path
     add_breadcrumb description unless description.nil?
   end
 
