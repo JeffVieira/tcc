@@ -7,7 +7,7 @@ module ApplicationHelper
   end
 
   def destroy_buttom(link="#")
-    link_to link, method: :delete, data: { confirm: 'Você tem certeza?' }, class: "btn btn-danger", title: "Excluir", data: {toggle: "tooltip", placement: "bottom"} do
+    link_to link, method: :delete, data: { confirm: 'Você tem certeza?', toggle: "tooltip", placement: "bottom" }, class: "btn btn-danger", title: "Excluir" do
       "<i class='fa fa-close'></i>".html_safe
     end
   end

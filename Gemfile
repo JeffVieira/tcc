@@ -51,8 +51,9 @@ group :development, :test do
 
   gem 'adminlte-generators'
   #gem 'rspec'
+  gem 'test-unit'
   gem 'rspec-rails'
-  #gem 'rspec-expectations'
+  gem 'rspec-expectations'
   #gem 'rspec-collection_matchers'
   gem 'database_cleaner'
   #gem 'simplecov'
@@ -62,7 +63,7 @@ group :development, :test do
   gem 'pry-doc', '0.6.0'
   #gem "factory_girl"
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug'
+  #gem 'byebug'
 
   # Access an IRB console on exception pages or by using <%= console %> in views
   #gem 'web-console', '~> 2.0'
