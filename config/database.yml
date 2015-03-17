@@ -79,8 +79,11 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  <<: *default
   database: ddcka430qqa68s
   username: csaqqqcgjfvsgo
   password: QRXq-d7twX3ltKzOHGePt2UUHJ
   host: ec2-184-73-221-47.compute-1.amazonaws.com
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  port: 5432
