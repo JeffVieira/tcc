@@ -1,0 +1,9 @@
+<%= simple_form_for @folder do |f| %>
+
+  <%= f.input :parent_id, as: :select, collection: Folder.all.collect {|x| [x.name, x.id]} %>
+
+  <%= f.input :name, required: true %>
+
+  <%= f.button :submit, class: 'btn btn-success' %>
+
+<% end %>

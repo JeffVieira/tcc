@@ -1,0 +1,25 @@
+<section class="content invoice">
+  <table class="table">
+    <thead>
+      <th>Nome</th>
+      <th class="action-table">
+        <%= link_to new_folder_path(@folder), class:'btn btn-success'  do %>
+          <span class="fa fa-plus"></span>
+          Novo
+        <% end %>
+    </thead>
+
+    <tbody>
+      <% @folders.each do |folder| %>
+      <tr>
+        <td><%= folder.name %></td>
+        <td>
+          <%= edit_buttom(edit_folder_path(folder)) %>
+          <%= destroy_buttom(folder) %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+
+  </table>
+</section>

@@ -20,24 +20,20 @@
   <!-- /.search form -->
   <!-- sidebar menu: : style can be found in sidebar.less -->
   <ul class="sidebar-menu">
-    <%= treeview_link 'Criar novo' do %>
-      <%= nav_link "#" do %>
-        <i class="fa fa-angle-double-right"></i>
-        Novo documento
-      <% end %>
-      <%= nav_link "#" do %>
-        <i class="fa fa-angle-double-right"></i>
-        Novo processo
-      <% end %>
-      <%= admin_link(user_groups_path,"Documento") %>
-      <%= admin_link(user_groups_path,"Diretório") %>
-      <%= admin_link(user_groups_path,"Processo") %>
+    <%= treeview_link '<i class="fa fa-plus"></i> Criar novo'.html_safe do %>
+      <%= admin_link(documents_path,"Documento") %>
+      <%= admin_link(document_types_path,"Tipo de documento") %>
+      <%= admin_link(work_processes_path,"Processo") %>
+      <%= admin_link(process_types_path,"Tipo de processo") %>
+      <%= admin_link(folders_path,"Diretório") %>
       <%= admin_link(users_path,"Novo usuário") %>
       <%= admin_link(user_groups_path,"Novo Grupo de usuário") %>
     <% end %>
 
     <%= treeview_link '<i class="fa fa-folder"></i> Documentos'.html_safe do %>
-
+      <% @side_bar_files.each do |file| %>
+        <%= file_link(file) %>
+      <% end %>
     <% end %>
 
     <%= treeview_link '<i class="fa fa-star"></i> Favoritos'.html_safe do %>

@@ -1,0 +1,32 @@
+<%= simple_form_for(@document) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :folder_id, as: :select, collection: Folder.all.collect {|x| [x.name, x.id]} %>
+    <%= f.input :name %>
+    <%= f.input :date_validity %>
+    <%= f.input :notification_period %>
+    <%= f.file_field :arquivo %>
+    <%= f.hidden_field :user_id %>
+    <%= f.input :checkout %>
+  </div>
+
+  <div class="box box-primary">
+    <div data-original-title="Header tooltip" class="box-header" data-toggle="tooltip" title="">
+      <h3 class="box-title">Permições</h3>
+      <div class="box-tools pull-right">
+        <button class="btn btn-primary btn-xs" data-widget="collapse"><i class="fa fa-minus"></i></button>
+      </div>
+    </div>
+    <div class="box-body">
+
+    </div>
+    <div class="box-footer">
+      <code>.box-footer</code>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, class: "btn-success" %>
+  </div>
+<% end %>

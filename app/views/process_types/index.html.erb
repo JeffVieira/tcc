@@ -1,0 +1,29 @@
+<section class="content">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="box-body table-responsive">
+        <table class="table table-hover">
+          <thead>
+            <th>Nome</th>
+            <th class="action-table">
+              <%= link_to new_process_type_path(@process_type), class:'btn btn-success'  do %>
+                <span class="fa fa-plus"></span>
+                  Novo
+              <% end %>
+            </th>
+          </thead>
+          <tbody>
+            <%= content_tag_for(:tr, @process_types) do |process_type| %>
+              <td><%= process_type.name %></td>
+              <td>
+                <%= edit_buttom(edit_process_type_path(process_type)) %>
+                <%= destroy_buttom(process_type) %>
+              </td>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+

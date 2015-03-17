@@ -1,0 +1,38 @@
+<section class="content invoice">
+  <table class="table">
+    <thead>
+      <th>Nome</th>
+      <th>Autor</th>
+      <th style="width: 30%;">
+        <%= link_to new_document_path(folder_id: @folder), class:'btn btn-success'  do %>
+          <span class="fa fa-plus"></span>
+            Novo documento
+        <% end %>
+
+        <%= link_to new_folder_path(folder_id: @folder), class:'btn btn-success'  do %>
+          <span class="fa fa-plus"></span>
+            Novo diretório
+        <% end %>
+      </th>
+    </thead>
+
+    <tbody>
+      <% @folder.folders.each do |file| %>
+        <tr>
+          <td><%= link_to ("<i class='fa #{file.icon}'></i> "+ file.name).html_safe, folder_path(file) %></td>
+          <td>-</td>
+          <td></td>
+        </tr>
+      <% end %>
+
+      <% @folder.documents.each do |file| %>
+        <tr>
+          <td><%= link_to file.name, document_path(file) %></td>
+          <td><%= file.user.name %></td>
+          <td></td>
+        </tr>
+      <% end %>
+    </tbody>
+
+  </table>
+</section>

@@ -1,5 +1,19 @@
 Rails.application.routes.draw do
 
+  resources :folders
+
+  resources :documents
+
+  #match "documents/get/:id" => "documents#get", :as => "download"
+
+  resources :document_types
+
+  resources :work_processes
+
+  resources :process_types
+
+  resource :sistem_configurations
+
   resources :user_groups
 
   resources :global_searchs

@@ -1,0 +1,33 @@
+<section class="content">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="box-body table-responsive">
+        <table class="table table-hover">
+          <thead>
+              <th>Titulo</th>
+              <th>Data de validade</th>
+              <th>Autor</th>
+              <th class="action-table">
+              <%= link_to new_document_path(@document), class:'btn btn-success'  do %>
+                <span class="fa fa-plus"></span>
+                  Novo
+              <% end %>
+            </th>
+          </thead>
+          <tbody>
+            <%= content_tag_for(:tr, @documents) do |document| %>
+              <td><%= document.name %></td>
+              <td><%= document.date_validity %></td>
+              <td><%= document.user.name %></td>
+              <td>
+                <%= edit_buttom(edit_document_path(document)) %>
+                <%= destroy_buttom(document) %>
+              </td>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+

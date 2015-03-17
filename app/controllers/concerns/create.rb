@@ -10,7 +10,7 @@ module Create
       flash[:notice] = "Registro criado com sucesso"
       redirect_to "/" + self.controller_path
     else
-      breadrumb_for_actions("novo")
+      breadcrumb_for_actions("novo")
       render :new
     end
   end

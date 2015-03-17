@@ -8,15 +8,53 @@ pt_BR:
       user_group:
         one: "Grupo de usuário"
         other: "Grupos de usuário"
+      process_type:
+        one: "Tipo de processo"
+        other: "Tipos de processos"
+      processo:
+        one: "Processo"
+        other: "Processos"
+      sistem_configuration:
+        one: "Configuração"
+        other: "Configurações"
+      work_process:
+        one: "Processo"
+        other: "Processos"
+      document:
+        one: "Documento"
+        other: "Documentos"
+      document_type:
+        one: "Tipo de documento"
+        other: "Tipo de documentos"
+      folder:
+        one: "Diretório"
+        other: "Diretórios"
     attributes:
       user:
-        name: "nome"
-        password: "senha"
+        name: "Nome"
+        password: "Senha"
         password_confirmation: "Confirmar senha"
         current_password: "Senha atual"
       user_group:
-        name: "nome"
-
+        name: "Nome"
+      process_type:
+        name: "Nome"
+      processo:
+        name: "Nome"
+      sistem_configuration:
+        notification_period: "Periodo de notificação"
+      work_process:
+        name: "Titulo"
+      document:
+        name: "Titulo"
+        date_validity: "Data de validade"
+        notification_period: "Periodo de notificação"
+        folder_id: "Diretório"
+      document_type:
+        name: "Nome"
+      folder:
+        name: "Título"
+        parent_id: "Diretório"
 
   date:
     abbr_day_names:

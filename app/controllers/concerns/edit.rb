@@ -5,6 +5,6 @@ module Edit
     object = get_object or return
 
     instance_variable_set(get_variable, object)
-    breadrumb_for_actions("editar")
+    breadcrumb_for_actions("editar")
   end
 end

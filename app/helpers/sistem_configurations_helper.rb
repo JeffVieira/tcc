@@ -1,0 +1,2 @@
+module SistemConfigurationsHelper
+end

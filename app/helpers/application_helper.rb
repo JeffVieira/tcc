@@ -19,13 +19,57 @@ module ApplicationHelper
     end
   end
 
+  def file_link(file)
+    if file.is_a?(Folder)
+      link_to_folder(file)
+    else
+      link_to_file(file)
+    end
+  end
+
+  def link_to_folder(file)
+    treeview_link "<i class='fa #{file.icon}'></i> #{file.name}".html_safe do
+      #concat(link_to_add_new_folder(file.id))
+      file.folders.each do |folder|
+        concat(link_to_folder(folder)).html_safe
+      end
+      #concat(link_to_add_new_file(file.id))
+      file.documents.each do |document|
+        concat(link_to_file(document)).html_safe
+      end.join.html_safe
+    end
+  end
+
+  def link_to_file(file)
+    nav_link document_path(file) do
+      ("<i class='fa #{file.icon}'></i>"+
+      file.name).html_safe
+    end
+  end
+
+  def link_to_add_new_folder(folder_id)
+    nav_link new_folder_path(folder_id: folder_id) do
+      ("<i class='fa fa-plus'></i> Novo diretório").html_safe
+    end
+  end
+
+  def link_to_add_new_file(folder_id)
+    nav_link new_document_path(folder_id: folder_id) do
+      ("<i class='fa fa-plus'></i> Novo documento").html_safe
+    end
+  end
+
   def info_box(text="",quantity=0, color="", icon="")
-    content_tag(:div, :class=>'info-box' ) do
-      concat(content_tag(:span, content_tag(:i, " ",:class=>"fa #{icon}"),:class=>"info-box-icon #{color}"))
-      concat(content_tag(:div, :class=>"info-box-content") do
-        concat(content_tag(:span, text, :class=>"info-box-text"))
-        concat(content_tag(:span, quantity, :class=>"info-box-number"))
+    content_tag(:div, :class=>"small-box #{color}" ) do
+      concat(content_tag(:div, :class=>"inne") do
+        content_tag(:h3, quantity)+
+        content_tag(:p, text)
+      end)
+
+      concat(content_tag(:div, :class=>"icon") do
+        concat(content_tag(:i, "", :class=>"ion ion-bag"))
       end)
     end.html_safe
   end
+
 end

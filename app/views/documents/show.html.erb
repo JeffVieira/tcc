@@ -1,0 +1,21 @@
+<section class="content invoice">
+  <div class="nav-tabs-custom">
+    <ul class="nav nav-tabs">
+      <li class="active"><a href="#tab_1" data-toggle="tab">Informações</a></li>
+      <li><a href="#tab_2" data-toggle="tab">Histórico</a></li>
+    </ul>
+
+    <div class="tab-content">
+      <div class="tab-pane active" id="tab_1">
+        <b>Titulo:</b>
+        <p><%= @document.name %><p>
+
+        <%= link_to @document.arquivo_file_name, @document.arquivo.url %>
+
+      </div>
+      <div class="tab-pane" id="tab_2">
+        Aqui vai o histórico
+      </div>
+    </div>
+  </div>
+</section>

@@ -16,3 +16,4 @@
 //= require bootstrap-sprockets
 //= require adminlte
 //= require_tree .
+

@@ -3,9 +3,13 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-  before_action :authenticate_user!
+  before_action :authenticate_user!, :get_side_bar_files
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
+
+  def get_side_bar_files
+    @side_bar_files = Folder.get_father
+  end
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:account_update) { |u|
@@ -13,7 +17,7 @@ class ApplicationController < ActionController::Base
     }
   end
 
-  def breadrumb_for_actions(description=nil)
+  def breadcrumb_for_actions(description=nil)
     add_breadcrumb get_model.model_name.human(count: 2), "/"+self.controller_path
     add_breadcrumb description unless description.nil?
   end

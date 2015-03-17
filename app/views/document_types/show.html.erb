@@ -1,0 +1,36 @@
+<% content_for :content_header  do %>
+  <section class="content-header">
+    <h1>Show <small>document_type</small></h1>
+
+    <ol class="breadcrumb">
+      <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+      <li><%= link_to "Document_types", document_types_path %></li>
+      <li class="active">Show</li>
+    </ol>
+  </section>
+<% end %>
+
+<section class="content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="box box-primary">
+        <div class="box-header">
+          <div class="box-tools pull-right">
+            <%= link_to edit_document_type_path(@document_type), :class => 'btn btn-primary' do %>
+              <span class="glyphicon glyphicon-pencil"></span>
+              Edit
+            <% end %>          
+          </div>
+        </div>
+        <div class="box-body">
+          <dl class="dl-horizontal">
+            <dt>Name:</dt>
+            <dd><%= @document_type.name %></dd>
+
+          </dl>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+

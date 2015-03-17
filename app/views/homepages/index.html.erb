@@ -1,13 +1,3 @@
-<%= simple_form_for(@user, html: { class: 'sidebar-form' }) do |f| %>
-  <div class="input-group">
-    <%= f.input_field :name, placeholder:"Buscar...", hint: true, input_html: { maxlength: 20, class: 'form-control' } %>
-    <span class="input-group-btn">
-      <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
-    </span>
-  </div>
-<% end %>
-
-
 <div class="col-md-3 col-sm-6 col-xs-12">
   <%= info_box("Documentos", 1000, "bg-aqua", "fa-file-text-o",) %>
 </div>
