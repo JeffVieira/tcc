@@ -55,6 +55,8 @@ gem "paperclip", "~> 4.2"
 
 gem "acts_as_tree"
 
+gem "select2-rails", '3.5.9.1'
+
 group :development, :test do
 
   gem 'adminlte-generators'

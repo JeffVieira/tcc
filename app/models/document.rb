@@ -4,8 +4,7 @@ class Document < ActiveRecord::Base
 
   has_attached_file :arquivo,
                     :url => '/:class/:id/:style.:extension',
-                    :path => ':rails_root/assets/:class/:id_partition/:style.:extension',
-                    :presence=>true
+                    :path => ':rails_root/assets/:class/:id_partition/:style.:extension'
   validates_attachment_content_type :arquivo, :content_type => "application/pdf"
 
   attr_accessor :icon

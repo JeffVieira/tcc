@@ -14,6 +14,24 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap-sprockets
+//= require bootstrap-datepicker/core
+//= require bootstrap-datepicker/locales/bootstrap-datepicker.pt-BR.js
 //= require adminlte
+//= require select2
+//= require select2_locale_"pt-BR"
 //= require_tree .
 
+$(function() {
+
+    $('[data-toggle="tooltip"]').tooltip();
+
+    $('select.select2').select2();
+
+    make_date_field($('input.datepicker'));
+});
+
+
+
+function make_date_field(field){
+  field.datepicker({autoclose: true, language: "pt-BR", format: 'dd/mm/yyyy', todayHighlight: true });
+}

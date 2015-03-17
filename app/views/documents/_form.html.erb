@@ -2,13 +2,12 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :folder_id, as: :select, collection: Folder.all.collect {|x| [x.name, x.id]} %>
+    <%= f.input :folder_id, as: :select, collection: Folder.all.collect {|x| [x.name, x.id]}, input_html: {class: "select2"} %>
     <%= f.input :name %>
-    <%= f.input :date_validity %>
-    <%= f.input :notification_period %>
-    <%= f.file_field :arquivo %>
+    <%= f.input :date_validity, as: :string, input_html: {class: "datepicker", value: (l(f.object.date_validity) if !f.object.date_validity.nil?)}, required: true %>
+    <%= f.input :notification_period, input_html: {placeholder: "Informe em dias"} %>
+    <%= f.input :arquivo, as: :file %>
     <%= f.hidden_field :user_id %>
-    <%= f.input :checkout %>
   </div>
 
   <div class="box box-primary">
