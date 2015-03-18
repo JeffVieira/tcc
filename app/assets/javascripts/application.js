@@ -21,17 +21,30 @@
 //= require select2_locale_"pt-BR"
 //= require_tree .
 
+function debug(msg) {
+  if (window.console) {
+    console.info(msg);
+  }
+}
+
 $(function() {
 
-    $('[data-toggle="tooltip"]').tooltip();
+  Ged.actual = {};
+  Ged.actual.controller = $('body').attr('data-controller');
+  Ged.actual.action = $('body').attr('data-action');
 
-    $('select.select2').select2();
+  try {
+    Ged[Ged.actual.controller][Ged.actual.action]['init'].call();
+  } catch (e) {
+    console.debug(e);
+    console.debug(e.stack);
+    console.debug("\"Ged." + Ged.actual.controller + "." + Ged.actual.action + ".init()\" não existe.");
+  }
 
-    make_date_field($('input.datepicker'));
+  $('[data-toggle="tooltip"]').tooltip();
+
+  $('select.select2').select2();
+
+  Ged.make_date_field($('input.datepicker'));
 });
 
-
-
-function make_date_field(field){
-  field.datepicker({autoclose: true, language: "pt-BR", format: 'dd/mm/yyyy', todayHighlight: true });
-}

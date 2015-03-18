@@ -3,7 +3,12 @@
     <thead>
       <th>Nome</th>
       <th>Email</th>
-      <th><%= link_to 'Novo', new_user_path, class:'btn btn-success' %></th>
+      <th class="action-table">
+        <%= link_to new_user_path(@user_group), class:'btn btn-success'  do %>
+          <span class="fa fa-plus"></span>
+          Novo
+        <% end %>
+      </th>
     </thead>
 
     <tbody>

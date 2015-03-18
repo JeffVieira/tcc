@@ -5,17 +5,14 @@
     <%= f.input :folder_id, as: :select, collection: Folder.all.collect {|x| [x.name, x.id]}, input_html: {class: "select2"} %>
     <%= f.input :name %>
     <%= f.input :date_validity, as: :string, input_html: {class: "datepicker", value: (l(f.object.date_validity) if !f.object.date_validity.nil?)}, required: true %>
-    <%= f.input :notification_period, input_html: {placeholder: "Informe em dias"} %>
-    <%= f.input :arquivo, as: :file %>
+    <%= f.input :notification_period, input_html: {placeholder: "Informe número de dias para aviso"} %>
+    <%= f.input :arquivo, as: :file, hint: "Somente PDF e imagens podem ser anexados" %>
     <%= f.hidden_field :user_id %>
   </div>
 
   <div class="box box-primary">
     <div data-original-title="Header tooltip" class="box-header" data-toggle="tooltip" title="">
       <h3 class="box-title">Permições</h3>
-      <div class="box-tools pull-right">
-        <button class="btn btn-primary btn-xs" data-widget="collapse"><i class="fa fa-minus"></i></button>
-      </div>
     </div>
     <div class="box-body">
 

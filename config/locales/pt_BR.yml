@@ -44,11 +44,11 @@ pt_BR:
       sistem_configuration:
         notification_period: "Periodo de notificação"
       work_process:
-        name: "Titulo"
+        name: "Título"
       document:
-        name: "Titulo"
+        name: "Título"
         date_validity: "Data de validade"
-        notification_period: "Periodo de notificação"
+        notification_period: "Aviso prévio de vencimento"
         folder_id: "Diretório"
       document_type:
         name: "Nome"

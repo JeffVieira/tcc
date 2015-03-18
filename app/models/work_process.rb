@@ -1,6 +1,6 @@
 class WorkProcess < ActiveRecord::Base
   belongs_to :folder
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: true
 
   attr_accessor :icon
   after_initialize :set_icon

@@ -1,11 +1,11 @@
-<section class="content">
+<section class="content invoice">
   <div class="row">
     <div class="col-xs-12">
       <div class="box-body table-responsive">
         <table class="table table-hover">
           <thead>
-                          <th>Name</th>
-                        <th class="action-table">
+              <th>Nome</th>
+              <th class="action-table">
               <%= link_to new_document_type_path(@document_type), class:'btn btn-success'  do %>
                 <span class="fa fa-plus"></span>
                   Novo
@@ -14,8 +14,8 @@
           </thead>
           <tbody>
             <%= content_tag_for(:tr, @document_types) do |document_type| %>
-                              <td><%= document_type.name %></td>
-                            <td>
+              <td><%= document_type.name %></td>
+              <td>
                 <%= edit_buttom(edit_document_type_path(document_type)) %>
                 <%= destroy_buttom(document_type) %>
               </td>
