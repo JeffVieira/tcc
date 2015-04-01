@@ -2,9 +2,8 @@ class Folder < ActiveRecord::Base
   acts_as_tree
 
   has_many :documents
-  has_many :work_process
   has_many :folders, foreign_key: :parent_id, class_name: "Folder"
-  belongs_to :folder#, foreign_key: :parent_id, class_name: "Folder"
+  belongs_to :folder
 
   validates :name, presence: true
 
@@ -14,11 +13,14 @@ class Folder < ActiveRecord::Base
   scope :get_father, -> { where(:parent_id=>nil) }
 
   def set_icon
-    self.icon = "fa-folder"
+      self.icon = "fa-folder"
   end
 
-  def get_first_parent
-    return parent if parent.parent_id.nil?
-    parent.get_first_parent
+  def get_parents
+    parent_array = [self]
+    parent_array.each do |parent_folder|
+      parent_array.push(parent_folder.parent) unless parent_folder.nil? || parent_folder.parent_id.blank?
+    end
+    return parent_array.reverse.compact
   end
 end

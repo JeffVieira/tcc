@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150316014146) do
+ActiveRecord::Schema.define(version: 20150331010531) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,10 +22,30 @@ ActiveRecord::Schema.define(version: 20150316014146) do
     t.datetime "updated_at",          null: false
   end
 
+  create_table "document_histories", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "document_id"
+    t.string   "action"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "document_processes", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "status"
+  end
+
   create_table "document_types", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "document_types_process", force: :cascade do |t|
+    t.integer "document_type_id"
+    t.integer "document_process_id"
   end
 
   create_table "documents", force: :cascade do |t|
@@ -42,20 +62,27 @@ ActiveRecord::Schema.define(version: 20150316014146) do
     t.string   "arquivo_content_type"
     t.integer  "arquivo_file_size"
     t.datetime "arquivo_updated_at"
+    t.integer  "status"
+    t.integer  "document_id"
   end
 
   create_table "folders", force: :cascade do |t|
     t.string   "name"
     t.integer  "parent_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "process_type_id"
+    t.integer  "user_id"
   end
 
-  create_table "process_types", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table "permissions", force: :cascade do |t|
+    t.string   "permission_code"
+    t.integer  "user_group_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
+
+  add_index "permissions", ["user_group_id"], name: "index_permissions_on_user_group_id", using: :btree
 
   create_table "sistem_configurations", force: :cascade do |t|
     t.string   "notification_period"

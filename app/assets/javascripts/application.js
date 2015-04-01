@@ -14,18 +14,13 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap-sprockets
+//= require cocoon
 //= require bootstrap-datepicker/core
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.pt-BR.js
 //= require adminlte
 //= require select2
 //= require select2_locale_"pt-BR"
 //= require_tree .
-
-function debug(msg) {
-  if (window.console) {
-    console.info(msg);
-  }
-}
 
 $(function() {
 
@@ -36,12 +31,9 @@ $(function() {
   try {
     Ged[Ged.actual.controller][Ged.actual.action]['init'].call();
   } catch (e) {
-    console.debug(e);
-    console.debug(e.stack);
-    console.debug("\"Ged." + Ged.actual.controller + "." + Ged.actual.action + ".init()\" não existe.");
   }
 
-  $('[data-toggle="tooltip"]').tooltip();
+  //$('[data-toggle="tooltip"]').tooltip();
 
   $('select.select2').select2();
 

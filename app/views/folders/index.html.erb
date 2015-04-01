@@ -2,11 +2,12 @@
   <table class="table">
     <thead>
       <th>Nome</th>
-      <th class="action-table">
+      <th style="width: 15%;">
         <%= link_to new_folder_path(@folder), class:'btn btn-success'  do %>
           <span class="fa fa-plus"></span>
           Novo
         <% end %>
+      </th>
     </thead>
 
     <tbody>
@@ -14,6 +15,7 @@
       <tr>
         <td><%= folder.name %></td>
         <td>
+          <%= show_buttom(folder_path(folder)) %>
           <%= edit_buttom(edit_folder_path(folder)) %>
           <%= destroy_buttom(folder) %>
         </td>

@@ -22,10 +22,9 @@
   <ul class="sidebar-menu">
     <%= treeview_link '<i class="fa fa-plus"></i> Criar novo'.html_safe do %>
       <%= admin_link(documents_path,"Documento") %>
-      <%= admin_link(document_types_path,"Tipo de documento") %>
-      <%= admin_link(work_processes_path,"Processo") %>
-      <%= admin_link(process_types_path,"Tipo de processo") %>
       <%= admin_link(folders_path,"Diretório") %>
+      <%= admin_link(document_types_path,"Tipo de documento") %>
+      <%= admin_link(document_processes_path,"Processo") %>
       <%= admin_link(users_path,"Usuário") %>
       <%= admin_link(user_groups_path,"Grupo de usuário") %>
     <% end %>

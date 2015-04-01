@@ -15,9 +15,21 @@
     <div class="navbar-right">
       <ul class="nav navbar-nav">
         <li class="dropdown messages-menu">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown tooltip" title="Vencimentos">
+            <i class="fa fa-calendar"></i>
+            <%= content_tag(:span, @vencimentos, class: "label label-warning") if @vencimentos>0 %>
+          </a>
+        </li>
+        <li class="dropdown messages-menu">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown tooltip" title="Documento aguardando validação">
+            <i class="fa fa-file"></i>
+            <%= content_tag(:span, @checkouts, class: "label label-danger") if @checkouts>0 %>
+          </a>
+        </li>
+        <li class="dropdown messages-menu">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown tooltip" title="Notificações">
             <i class="fa fa-envelope"></i>
-            <span class="label label-success">4</span>
+            <%= content_tag(:span, @notifications, class: "label label-success") if @notifications >0 %>
           </a>
           <ul class="dropdown-menu">
             <li class="header">You have 4 messages</li>

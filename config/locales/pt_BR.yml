@@ -8,18 +8,12 @@ pt_BR:
       user_group:
         one: "Grupo de usuário"
         other: "Grupos de usuário"
-      process_type:
-        one: "Tipo de processo"
-        other: "Tipos de processos"
-      processo:
+      document_process:
         one: "Processo"
         other: "Processos"
       sistem_configuration:
         one: "Configuração"
         other: "Configurações"
-      work_process:
-        one: "Processo"
-        other: "Processos"
       document:
         one: "Documento"
         other: "Documentos"
@@ -37,24 +31,24 @@ pt_BR:
         current_password: "Senha atual"
       user_group:
         name: "Nome"
-      process_type:
-        name: "Nome"
-      processo:
+      document_process:
         name: "Nome"
       sistem_configuration:
         notification_period: "Periodo de notificação"
-      work_process:
-        name: "Título"
       document:
         name: "Título"
         date_validity: "Data de validade"
         notification_period: "Aviso prévio de vencimento"
         folder_id: "Diretório"
+        document_type_id: "Tipo"
       document_type:
         name: "Nome"
       folder:
         name: "Título"
         parent_id: "Diretório"
+        process_id: "Tipo do processo"
+      relation:
+        document_type_id: "Tipo de documento"
 
   date:
     abbr_day_names:

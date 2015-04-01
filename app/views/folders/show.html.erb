@@ -3,13 +3,14 @@
     <thead>
       <th>Nome</th>
       <th>Autor</th>
+      <th></th>
       <th style="width: 30%;">
-        <%= link_to new_document_path(folder_id: @folder), class:'btn btn-success'  do %>
+        <%= link_to new_document_path(folder_id: @folder, id_to_redirect: @folder.id), class:'btn btn-success pull-right'  do %>
           <span class="fa fa-plus"></span>
             Novo documento
         <% end %>
 
-        <%= link_to new_folder_path(folder_id: @folder), class:'btn btn-success'  do %>
+        <%= link_to new_folder_path(folder_id: @folder, id_to_redirect: @folder.id), class:'btn btn-success'  do %>
           <span class="fa fa-plus"></span>
             Novo diretório
         <% end %>
@@ -17,19 +18,29 @@
     </thead>
 
     <tbody>
+      <% unless @folder.parent_id.blank? %>
+        <tr>
+          <td colspan="4"><%= link_to ".." , folder_path(@folder.parent) %></td>
+        </tr>
+      <% end %>
+
       <% @folder.folders.each do |file| %>
         <tr>
-          <td><%= link_to ("<i class='fa #{file.icon}'></i> "+ file.name).html_safe, folder_path(file) %></td>
-          <td>-</td>
-          <td></td>
+          <td colspan="4"><%= link_to ("<i class='fa #{file.icon}'></i> "+ file.name).html_safe, folder_path(file) %></td>
         </tr>
       <% end %>
 
       <% @folder.documents.each do |file| %>
         <tr>
-          <td><%= link_to file.name, document_path(file) %></td>
+          <td><%= link_to ("<i class='fa #{file.icon}'></i> "+ file.name).html_safe, document_path(file) %></td>
           <td><%= file.user.name %></td>
-          <td></td>
+          <td><%= status_badge(file.status) %></td>
+          <td>
+            <i class="pull-right fa fa-download"></i>
+            <i class="pull-right fa fa-upload"></i>
+            <i class="pull-right fa fa-pencil"></i>
+            <i class="pull-right fa fa-star"></i>
+          </td>
         </tr>
       <% end %>
     </tbody>

@@ -1,0 +1,11 @@
+pt_BR:
+  permissions:
+    new: "Adicionar"
+    list: "Listar"
+    show: "Visualizar"
+    edit: "Editar"
+    destroy: "Excluir"
+    models:
+      user: "Usuários"
+      home: "Home"
+      document: "Documento"

@@ -1,6 +1,6 @@
 class HomepagesController < ApplicationController
 
-  #layout "adminlte"
+  layout "home"
 
   def index
     @user = User.new

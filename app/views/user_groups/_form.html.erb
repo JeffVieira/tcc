@@ -5,6 +5,10 @@
     <%= f.input :name %>
   </div>
 
+  <div>
+    <%= render "permissions", :f=>f %>
+  </div>
+
   <div class="form-actions">
     <%= f.button :submit, class: "btn-success" %>
   </div>

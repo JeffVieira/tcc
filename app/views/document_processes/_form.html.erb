@@ -1,0 +1,19 @@
+<%= simple_form_for(@document_process) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :name %>
+  </div>
+
+  <div id="document_types">
+    <%= f.simple_fields_for :document_types_document_process do |document_type| %>
+      <%= render 'document_types_document_process_fields', f: document_type %>
+    <% end %>
+
+    <%= link_to_add_association "<i class='fa fa-plus'></i> Tipo de documento".html_safe, f, :document_types_document_process, class: "btn btn-info" %>
+  </div>
+
+  <div class="form-actions link">
+    <%= f.button :submit, class: "btn-success" %>
+  </div>
+<% end %>

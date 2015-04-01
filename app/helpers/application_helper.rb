@@ -12,6 +12,12 @@ module ApplicationHelper
     end
   end
 
+  def show_buttom(link="#")
+    link_to link,  data: { toggle: "tooltip", placement: "bottom" }, class: "btn btn-info", title: "Exibir" do
+      "<i class='fa fa-folder-open-o'></i>".html_safe
+    end
+  end
+
   def admin_link(link="#",text="Novo" , icon="fa-angle-double-right")
     nav_link link do
         ("<i class='fa #{icon}'></i>"+

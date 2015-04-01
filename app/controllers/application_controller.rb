@@ -2,13 +2,33 @@ class ApplicationController < ActionController::Base
   include Index, New, Edit, Update, Create, Destroy, Search
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
+  include Pundit
+
   protect_from_forgery with: :exception
-  before_action :authenticate_user!, :get_side_bar_files
+  before_action :authenticate_user!, :get_side_bar_files, :get_current_user_notifications
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
 
+  def get_current_user_notifications
+    if signed_in?
+      @vencimentos = 0
+      @checkouts = current_user.documents.aguardando_validacao.size
+      @notifications = 0
+    else
+      @vencimentos = 0
+      @checkouts = 0
+      @notifications = 0
+    end
+  end
+
   def get_side_bar_files
     @side_bar_files = Folder.get_father
+  end
+
+  def add_all_parent_breadcrumb(folder)
+    folder.get_parents.each do |parents|
+      add_breadcrumb parents.name, folder_path(parents)
+    end
   end
 
   def configure_permitted_parameters

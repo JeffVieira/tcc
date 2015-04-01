@@ -1,20 +1,63 @@
 <section class="content invoice">
   <div class="nav-tabs-custom">
     <ul class="nav nav-tabs">
-      <li class="active"><a href="#tab_1" data-toggle="tab">Informações</a></li>
-      <li><a href="#tab_2" data-toggle="tab">Histórico</a></li>
+      <li class="active"><a href="#tab_1" data-toggle="tab">Documento inline</a></li>
+      <li><a href="#info" data-toggle="tab">Informações</a></li>
+      <li><a href="#tab_3" data-toggle="tab">Histórico</a></li>
+
+      <li class="pull-right header">
+        <div class="btn-group pull-right">
+          <%= button_action %>
+          <button type="button" class="btn btn-info btn-flat dropdown-toggle" data-toggle="dropdown">
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" role="menu">
+            <li><%= link_to "Editar", edit_document_path(@document) %></li>
+            <li><%= link_to "Download", @document.arquivo.url, target: '_blank' %></li>
+          </ul>
+        </div>
+      </li>
     </ul>
 
     <div class="tab-content">
       <div class="tab-pane active" id="tab_1">
-        <b>Titulo:</b>
-        <p><%= @document.name %><p>
-
-        <%= link_to @document.arquivo_file_name, @document.arquivo.url %>
-
       </div>
-      <div class="tab-pane" id="tab_2">
-        Aqui vai o histórico
+      <div class="tab-pane" id="info">
+        <b>Status:</b>
+        <p><%= status_badge(@document.status) %></p>
+
+        <b>Titulo:</b>
+        <p><%= @document.name %></p>
+
+        <b>Tipo:</b>
+        <p><%= @document.document_type.name %></p>
+
+        <b>Validade:</b>
+        <p><%= @document.date_validity.to_s_br %></p>
+
+        <b>Autor/Responsável:</b>
+        <p><%= @document.user.name %></p>
+
+        <b>Documento:</b>
+        <p><%= link_to_download %></p>
+      </div>
+      <div class="tab-pane" id="tab_3">
+        <table class="table">
+          <thead>
+            <th>Ação</th>
+            <th>Usuário</th>
+            <th>Data</th>
+          </thead>
+          <tbody>
+            <% @document.document_histories.each do |history| %>
+              <tr>
+                <td><%= history.action %></td>
+                <td><%= history.user.name %></td>
+                <td><%= history.created_at.to_s_br %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>

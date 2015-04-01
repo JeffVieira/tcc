@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe "process_types/index" do
+describe "process/index" do
   before(:each) do
-    assign(:process_types, [
+    assign(:process, [
       stub_model(ProcessType,
         :string => ""
       ),
@@ -12,7 +12,7 @@ describe "process_types/index" do
     ])
   end
 
-  it "renders a list of process_types" do
+  it "renders a list of process" do
     render
     # Run the generator again with the --webrat flag if you want to use webrat matchers
     assert_select "tr>td", :text => "".to_s, :count => 2

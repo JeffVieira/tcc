@@ -1,0 +1,9 @@
+<div class="nested-fields relation-fields row">
+  <div id="document_type_from_list"  class="col-md-8">
+    <%= f.association :document_type, collection: DocumentType.all, label: "Tipo de documento" %>
+  </div>
+  <div class="col-md-4">
+    <%= link_to_add_association 'Criar tipo documento', f, :document_type, class:"btn btn-info" %>
+    <%= link_to_remove_association "<i class='fa fa-close'></i> Remover".html_safe, f, class:"btn btn-danger pullright" %>
+  </div>
+</div>

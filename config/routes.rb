@@ -2,15 +2,19 @@ Rails.application.routes.draw do
 
   resources :folders
 
-  resources :documents
+  resources :documents do
+    collection do
+      get :checkout
+      get :checkin
+      post :checkin_create
+    end
+  end
 
   #match "documents/get/:id" => "documents#get", :as => "download"
 
   resources :document_types
 
-  resources :work_processes
-
-  resources :process_types
+  resources :document_processes
 
   resource :sistem_configurations
 
@@ -19,7 +23,8 @@ Rails.application.routes.draw do
   resources :global_searchs
   resources :users do
     collection do
-      match 'search' => 'users#search', via: [:get, :post], as: :search
+      get :dashboard
+      #match 'search' => 'users#search', via: [:get, :post], as: :search
     end
   end
   #devise_for :users

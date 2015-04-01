@@ -1,6 +1,6 @@
 <%= simple_form_for @folder do |f| %>
 
-  <%= f.input :parent_id, as: :select, collection: Folder.all.collect {|x| [x.name, x.id]} %>
+  <%= f.input :parent_id, as: :select, input_html: {class: "select2"}, collection: Folder.all.collect {|x| [x.name, x.id]} %>
 
   <%= f.input :name, required: true %>
 

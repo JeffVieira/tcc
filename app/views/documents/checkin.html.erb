@@ -1,0 +1,28 @@
+<section class="content invoice">
+
+  <div class="alert alert-warning alert-dismissable">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+    <h4><i class="icon fa fa-exclamation-circle"></i> Atenção! <%= current_user.name %></h4>
+    Você está criando uma nova versão para o documento <b><%= @version.name %></b>.
+  </div>
+
+  <%= simple_form_for(@document , url: checkin_create_documents_path, method: :post) do |f| %>
+    <%= f.error_notification %>
+
+    <div class="form-inputs">
+      <%= f.input :name %>
+      <%= f.input :date_validity, as: :string, input_html: {class: "datepicker", value: (l(f.object.date_validity) if !f.object.date_validity.nil?)}, required: true %>
+      <%= f.input :notification_period, input_html: {placeholder: "Informe número de dias para aviso"} %>
+      <%= f.input :arquivo, as: :file, hint: "Somente PDF e imagens podem ser anexados" %>
+      <%= f.hidden_field :user_id %>
+      <%= f.hidden_field :document_id %>
+      <%= f.hidden_field :document_type_id %>
+      <%= f.hidden_field :folder_id %>
+      <%= f.hidden_field :status %>
+    </div>
+
+    <div class="form-actions">
+      <%= f.button :submit, class: "btn-success" %>
+    </div>
+  <% end %>
+</section>

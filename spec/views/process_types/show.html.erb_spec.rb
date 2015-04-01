@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe "process_types/show" do
+describe "process/show" do
   before(:each) do
-    @process_type = assign(:process_type, stub_model(ProcessType,
+    @process = assign(:process, stub_model(ProcessType,
       :string => ""
     ))
   end

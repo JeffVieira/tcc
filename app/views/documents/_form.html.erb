@@ -2,26 +2,20 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :folder_id, as: :select, collection: Folder.all.collect {|x| [x.name, x.id]}, input_html: {class: "select2"} %>
+    <%= f.input :document_type_id, as: :select, collection: @document_type.collect {|x|  [x.name, x.id]}, input_html: {class: "select2"} %>
+    <%= f.input :folder_id, as: :select, collection: @folders.collect {|x| [x.name, x.id]}, input_html: {class: "select2"} %>
     <%= f.input :name %>
     <%= f.input :date_validity, as: :string, input_html: {class: "datepicker", value: (l(f.object.date_validity) if !f.object.date_validity.nil?)}, required: true %>
     <%= f.input :notification_period, input_html: {placeholder: "Informe número de dias para aviso"} %>
     <%= f.input :arquivo, as: :file, hint: "Somente PDF e imagens podem ser anexados" %>
+    <%= link_to(@document.arquivo_file_name, @document.arquivo.url) unless @document.arquivo.blank?  %>
+
     <%= f.hidden_field :user_id %>
+    <%= f.hidden_field :document_id %>
+    <%= f.hidden_field :status %>
+    <%= hidden_field_tag :id_to_redirect, params[:id_to_redirect] %>
+    <%= hidden_field_tag :folder_id, params[:folder_id] %>
   </div>
-
-  <div class="box box-primary">
-    <div data-original-title="Header tooltip" class="box-header" data-toggle="tooltip" title="">
-      <h3 class="box-title">Permições</h3>
-    </div>
-    <div class="box-body">
-
-    </div>
-    <div class="box-footer">
-      <code>.box-footer</code>
-    </div>
-  </div>
-
   <div class="form-actions">
     <%= f.button :submit, class: "btn-success" %>
   </div>

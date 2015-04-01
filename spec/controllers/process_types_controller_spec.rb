@@ -31,33 +31,33 @@ describe ProcessTypesController do
   let(:valid_session) { {} }
 
   describe "GET index" do
-    it "assigns all process_types as @process_types" do
-      process_type = ProcessType.create! valid_attributes
+    it "assigns all process as @process" do
+      process = ProcessType.create! valid_attributes
       get :index, {}, valid_session
-      assigns(:process_types).should eq([process_type])
+      assigns(:process).should eq([process])
     end
   end
 
   describe "GET show" do
-    it "assigns the requested process_type as @process_type" do
-      process_type = ProcessType.create! valid_attributes
-      get :show, {:id => process_type.to_param}, valid_session
-      assigns(:process_type).should eq(process_type)
+    it "assigns the requested process as @process" do
+      process = ProcessType.create! valid_attributes
+      get :show, {:id => process.to_param}, valid_session
+      assigns(:process).should eq(process)
     end
   end
 
   describe "GET new" do
-    it "assigns a new process_type as @process_type" do
+    it "assigns a new process as @process" do
       get :new, {}, valid_session
-      assigns(:process_type).should be_a_new(ProcessType)
+      assigns(:process).should be_a_new(ProcessType)
     end
   end
 
   describe "GET edit" do
-    it "assigns the requested process_type as @process_type" do
-      process_type = ProcessType.create! valid_attributes
-      get :edit, {:id => process_type.to_param}, valid_session
-      assigns(:process_type).should eq(process_type)
+    it "assigns the requested process as @process" do
+      process = ProcessType.create! valid_attributes
+      get :edit, {:id => process.to_param}, valid_session
+      assigns(:process).should eq(process)
     end
   end
 
@@ -65,34 +65,34 @@ describe ProcessTypesController do
     describe "with valid params" do
       it "creates a new ProcessType" do
         expect {
-          post :create, {:process_type => valid_attributes}, valid_session
+          post :create, {:process => valid_attributes}, valid_session
         }.to change(ProcessType, :count).by(1)
       end
 
-      it "assigns a newly created process_type as @process_type" do
-        post :create, {:process_type => valid_attributes}, valid_session
-        assigns(:process_type).should be_a(ProcessType)
-        assigns(:process_type).should be_persisted
+      it "assigns a newly created process as @process" do
+        post :create, {:process => valid_attributes}, valid_session
+        assigns(:process).should be_a(ProcessType)
+        assigns(:process).should be_persisted
       end
 
-      it "redirects to the created process_type" do
-        post :create, {:process_type => valid_attributes}, valid_session
+      it "redirects to the created process" do
+        post :create, {:process => valid_attributes}, valid_session
         response.should redirect_to(ProcessType.last)
       end
     end
 
     describe "with invalid params" do
-      it "assigns a newly created but unsaved process_type as @process_type" do
+      it "assigns a newly created but unsaved process as @process" do
         # Trigger the behavior that occurs when invalid params are submitted
         ProcessType.any_instance.stub(:save).and_return(false)
-        post :create, {:process_type => { "string" => "invalid value" }}, valid_session
-        assigns(:process_type).should be_a_new(ProcessType)
+        post :create, {:process => { "string" => "invalid value" }}, valid_session
+        assigns(:process).should be_a_new(ProcessType)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
         ProcessType.any_instance.stub(:save).and_return(false)
-        post :create, {:process_type => { "string" => "invalid value" }}, valid_session
+        post :create, {:process => { "string" => "invalid value" }}, valid_session
         response.should render_template("new")
       end
     end
@@ -100,60 +100,60 @@ describe ProcessTypesController do
 
   describe "PUT update" do
     describe "with valid params" do
-      it "updates the requested process_type" do
-        process_type = ProcessType.create! valid_attributes
-        # Assuming there are no other process_types in the database, this
+      it "updates the requested process" do
+        process = ProcessType.create! valid_attributes
+        # Assuming there are no other process in the database, this
         # specifies that the ProcessType created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
         ProcessType.any_instance.should_receive(:update).with({ "string" => "" })
-        put :update, {:id => process_type.to_param, :process_type => { "string" => "" }}, valid_session
+        put :update, {:id => process.to_param, :process => { "string" => "" }}, valid_session
       end
 
-      it "assigns the requested process_type as @process_type" do
-        process_type = ProcessType.create! valid_attributes
-        put :update, {:id => process_type.to_param, :process_type => valid_attributes}, valid_session
-        assigns(:process_type).should eq(process_type)
+      it "assigns the requested process as @process" do
+        process = ProcessType.create! valid_attributes
+        put :update, {:id => process.to_param, :process => valid_attributes}, valid_session
+        assigns(:process).should eq(process)
       end
 
-      it "redirects to the process_type" do
-        process_type = ProcessType.create! valid_attributes
-        put :update, {:id => process_type.to_param, :process_type => valid_attributes}, valid_session
-        response.should redirect_to(process_type)
+      it "redirects to the process" do
+        process = ProcessType.create! valid_attributes
+        put :update, {:id => process.to_param, :process => valid_attributes}, valid_session
+        response.should redirect_to(process)
       end
     end
 
     describe "with invalid params" do
-      it "assigns the process_type as @process_type" do
-        process_type = ProcessType.create! valid_attributes
+      it "assigns the process as @process" do
+        process = ProcessType.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         ProcessType.any_instance.stub(:save).and_return(false)
-        put :update, {:id => process_type.to_param, :process_type => { "string" => "invalid value" }}, valid_session
-        assigns(:process_type).should eq(process_type)
+        put :update, {:id => process.to_param, :process => { "string" => "invalid value" }}, valid_session
+        assigns(:process).should eq(process)
       end
 
       it "re-renders the 'edit' template" do
-        process_type = ProcessType.create! valid_attributes
+        process = ProcessType.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         ProcessType.any_instance.stub(:save).and_return(false)
-        put :update, {:id => process_type.to_param, :process_type => { "string" => "invalid value" }}, valid_session
+        put :update, {:id => process.to_param, :process => { "string" => "invalid value" }}, valid_session
         response.should render_template("edit")
       end
     end
   end
 
   describe "DELETE destroy" do
-    it "destroys the requested process_type" do
-      process_type = ProcessType.create! valid_attributes
+    it "destroys the requested process" do
+      process = ProcessType.create! valid_attributes
       expect {
-        delete :destroy, {:id => process_type.to_param}, valid_session
+        delete :destroy, {:id => process.to_param}, valid_session
       }.to change(ProcessType, :count).by(-1)
     end
 
-    it "redirects to the process_types list" do
-      process_type = ProcessType.create! valid_attributes
-      delete :destroy, {:id => process_type.to_param}, valid_session
-      response.should redirect_to(process_types_url)
+    it "redirects to the process list" do
+      process = ProcessType.create! valid_attributes
+      delete :destroy, {:id => process.to_param}, valid_session
+      response.should redirect_to(process_url)
     end
   end
 

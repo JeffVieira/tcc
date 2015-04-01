@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="col-sm-12">
+    <div>
+      <%= f.label :document_role, "Permissões" %>
+      <div id="permissoes" class="row">
+        <% count = 0 %>
+        <% PunditRoles::PERMISSIONS.sort.each do |model_name, permissions| %>
+          <div class="col-sm-3">
+            <%= I18n.t("permissions.models."+model_name) %>
+            <% permissions.sort_by { |k,v| v[:title] || v }.map.each do |code, hash| %>
+              <div class="checkbox" data-html="true" data-placement="left" data-trigger="hover" data-container="body" data-title="<%= hash[:title] || hash %>" data-content="<%= hash[:description].try(:html_safe) || "<small>Descrição não informada</small>" %>">
+                <label>
+                  <%= check_box_tag "permission_codes[]", code,
+                    @user_group.permissions.map(&:permission_code).include?(code) %>
+                  <%= hash[:title] %>
+                </label>
+              </div>
+            <% end %>
+          </div>
+          <% count = count + 1 %>
+          <% if count % 4 == 0 %>
+            <div %="" class="clearfix" style="border-bottom: 1px dashed; margin: 0px 0px 15px;"></div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

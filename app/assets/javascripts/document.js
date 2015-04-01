@@ -15,4 +15,5 @@ Ged.documents = {
 };
 
 Ged.documents.index = Ged.documents.search = Ged.documents.update =
-    Ged.documents.create = Ged.documents.new = Ged.documents.edit = Ged.documents.common;
+    Ged.documents.create = Ged.documents.new = Ged.documents.edit = Ged.documents.common =
+    Ged.documents.checkin;
