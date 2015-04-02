@@ -1,5 +1,7 @@
 class FoldersController < ApplicationController
 
+  layout "home", only: "show"
+
   def new
     breadcrumb_for_actions("novo")
     @folder = Folder.new(parent_id: params[:folder_id])
@@ -7,6 +9,7 @@ class FoldersController < ApplicationController
 
   def show
     @folder = Folder.find(params[:id])
+    @documents = @folder.documents.paginate(:page => params[:page], per_page: 20)
     add_all_parent_breadcrumb(@folder)
   end
 

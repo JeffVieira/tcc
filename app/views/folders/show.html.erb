@@ -1,49 +1,84 @@
-<section class="content invoice">
-  <table class="table">
-    <thead>
-      <th>Nome</th>
-      <th>Autor</th>
-      <th></th>
-      <th style="width: 30%;">
-        <%= link_to new_document_path(folder_id: @folder, id_to_redirect: @folder.id), class:'btn btn-success pull-right'  do %>
-          <span class="fa fa-plus"></span>
-            Novo documento
-        <% end %>
+<div class="col-md-3 col-sm-4">
 
-        <%= link_to new_folder_path(folder_id: @folder, id_to_redirect: @folder.id), class:'btn btn-success'  do %>
-          <span class="fa fa-plus"></span>
-            Novo diretório
-        <% end %>
-      </th>
-    </thead>
+  <!-- BOXES are complex enough to move the .box-header around.
+  This is an example of having the box header within the box body -->
+  <div class="box-header">
+    <i class="fa fa-folder"></i>
+    <h3 class="box-title">Diretórios</h3>
 
-    <tbody>
-      <% unless @folder.parent_id.blank? %>
-        <tr>
-          <td colspan="4"><%= link_to ".." , folder_path(@folder.parent) %></td>
-        </tr>
+    <ul class="pull-right dropdown">
+        <a href="#" class="text-muted dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false"><i class="fa fa-gear"></i></a>
+        <ul class="dropdown-menu">
+          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Documento</a></li>
+          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Diretório</a></li>
+          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Processo</a></li>
+          <li role="presentation" class="divider"></li>
+          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Editar</a></li>
+        </ul>
+      </ul>
+  </div>
+  <%= link_to new_document_path(folder_id: @folder, id_to_redirect: @folder.id), class:'btn btn-primary btn-block'  do %>
+    <span class="fa fa-plus"></span>
+      Novo documento
+  <% end %>
+  <!-- Navigation - folders-->
+  <div style="margin-top: 15px;">
+
+    <ul class="nav nav-pills nav-stacked">
+      <li class="header"><i class="fa fa-folder-open"></i> <%= @folder.name %></li>
+      <li><%= link_to ".." , (@folder.parent_id.present?)? folder_path(@folder.parent) : root_path %></li>
+      <% @folder.folders.each do |folder| %>
+        <li><%= link_to "<i class='fa fa-folder'></i> #{folder.name}</a>".html_safe, folder_path(folder) %></li>
       <% end %>
+      <%= li_empty %>
+    </ul>
+  </div>
+</div>
 
-      <% @folder.folders.each do |file| %>
-        <tr>
-          <td colspan="4"><%= link_to ("<i class='fa #{file.icon}'></i> "+ file.name).html_safe, folder_path(file) %></td>
-        </tr>
-      <% end %>
+<!-- /.col (LEFT) -->
+<div class="col-md-9 col-sm-8">
+  <div class="row pad">
+    <div class="col-sm-6">
+      <label style="margin-right: 10px;">
+      <input type="checkbox" id="check-all"/>
+      </label>
+      <!-- Action button -->
+      <div class="btn-group">
+        <button type="button" class="btn btn-default btn-sm btn-flat dropdown-toggle" data-toggle="dropdown">
+          Action <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+          <li><a href="#">Mark as read</a></li>
+          <li><a href="#">Mark as unread</a></li>
+          <li class="divider"></li>
+          <li><a href="#">Move to junk</a></li>
+          <li class="divider"></li>
+          <li><a href="#">Delete</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-sm-6 search-form">
+      <ol class='breadcrumb'>
+        <li><%= link_to '',root_path, class:"fa fa-home", title:'home' %></li>
+        <%= render_breadcrumbs :tag => :li, :separator => "" %>
+      </ol>
+    </div>
+  </div><!-- /.row -->
 
-      <% @folder.documents.each do |file| %>
-        <tr>
-          <td><%= link_to ("<i class='fa #{file.icon}'></i> "+ file.name).html_safe, document_path(file) %></td>
-          <td><%= file.user.name %></td>
-          <td><%= status_badge(file.status) %></td>
-          <td>
-            <i class="pull-right fa fa-download"></i>
-            <i class="pull-right fa fa-upload"></i>
-            <i class="pull-right fa fa-pencil"></i>
-            <i class="pull-right fa fa-star"></i>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
+  <div class="table-responsive">
+    <!-- THE MESSAGES -->
+    <table class="table table-mailbox">
+      <% @documents.each do |document| %>
+      <tr class="unread">
+        <td class="small-col"><input type="checkbox" /></td>
+        <td class="small-col"><i class='fa <%= document.icon %>'></i> </td>
+        <td class="name"><%= document.name %></td>
+        <td class="subject"><%= link_to document.name, document_path(document) %></td>
+        <td class="time"><%= document.created_at.to_s_br %></td>
+      </tr>
+      <% end if @folder.present? %>
+    </table>
+  </div><!-- /.table-responsive -->
+</div><!-- /.col (RIGHT) -->
 
-  </table>
-</section>
+

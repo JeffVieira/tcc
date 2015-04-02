@@ -1,6 +1,8 @@
 class DocumentsController < ApplicationController
   before_filter :get_user_groups,:get_document_type,:get_folders,  :only => [:new, :edit, :create, :update, :checkin]
 
+     layout "home", only: :show
+
   def new
     breadcrumb_for_actions("novo")
     @document = Document.new(user_id: current_user.id, folder_id: params[:id_to_redirect] || params[:folder_id], status: 1)
@@ -27,6 +29,8 @@ class DocumentsController < ApplicationController
 
   def show
     @document = Document.find(params[:id])
+    @folder = @document.folder
+    @folders = @folder.documents
 
     add_all_parent_breadcrumb(@document.folder) unless @document.folder_id.nil?
     add_breadcrumb @document.name

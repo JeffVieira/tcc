@@ -17,7 +17,7 @@
 //= require cocoon
 //= require bootstrap-datepicker/core
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.pt-BR.js
-//= require adminlte
+//= require adminLTE
 //= require select2
 //= require select2_locale_"pt-BR"
 //= require_tree .

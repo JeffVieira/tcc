@@ -12,6 +12,8 @@ class Folder < ActiveRecord::Base
 
   scope :get_father, -> { where(:parent_id=>nil) }
 
+  scope :roots, -> { where(:parent_id=>nil) }
+
   def set_icon
       self.icon = "fa-folder"
   end

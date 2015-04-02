@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def get_side_bar_files
+  def get_side_bar_files(folder_id=params[:current_folder_id])
     @side_bar_files = Folder.get_father
   end
 

@@ -3,6 +3,6 @@ class HomepagesController < ApplicationController
   layout "home"
 
   def index
-    @user = User.new
+    @folders = Folder.roots
   end
 end

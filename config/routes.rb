@@ -24,10 +24,10 @@ Rails.application.routes.draw do
   resources :users do
     collection do
       get :dashboard
-      #match 'search' => 'users#search', via: [:get, :post], as: :search
+      match 'search' => 'users#search', via: [:get, :post], as: :search
     end
   end
-  #devise_for :users
+
   devise_for :users, :path => 'contas', :path_names => { :sign_up => "registrar", :sign_in => "entrar" }, :controllers => { :sessions => 'sessions' }
 
   root to: "homepages#index"

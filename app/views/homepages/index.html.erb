@@ -1,15 +1,70 @@
-<div class="col-md-3 col-sm-6 col-xs-12">
-  <%= info_box("Documentos", 1000, "bg-aqua", "fa-file-text-o",) %>
+<div class="col-md-3 col-sm-4">
+  <!-- BOXES are complex enough to move the .box-header around.
+  This is an example of having the box header within the box body -->
+  <div class="box-header">
+    <i class="fa fa-folder"></i>
+    <h3 class="box-title">Diretórios</h3>
+  </div>
+  <%= link_to new_folder_path, class:'btn btn-primary btn-block'  do %>
+    <span class="fa fa-plus"></span>
+      Novo diretório
+  <% end %>
+  <!-- Navigation - folders-->
+  <div style="margin-top: 15px;">
+    <ul class="nav nav-pills nav-stacked">
+      <li class="header"><i class="fa fa-folder-open"></i> Inicio </li>
+      <% @folders.each do |folder| %>
+        <li><%= link_to "<i class='fa fa-folder'></i> #{folder.name}</a>".html_safe, folder_path(folder) %></li>
+      <% end %>
+      <li><a href="#"><i class="fa fa-star"></i> Starred</a></li>
+    </ul>
+  </div>
 </div>
 
-<div class="col-md-3 col-sm-6 col-xs-12">
-  <%= info_box("Vencimentos", 1000, "bg-green", "fa-calendar",) %>
-</div><!-- /.col -->
+<!-- /.col (LEFT) -->
+<div class="col-md-9 col-sm-8">
+  <div class="row pad">
+    <div class="col-sm-6">
+      <label style="margin-right: 10px;">
+      <input type="checkbox" id="check-all"/>
+      </label>
+      <!-- Action button -->
+      <div class="btn-group">
+        <button type="button" class="btn btn-default btn-sm btn-flat dropdown-toggle" data-toggle="dropdown">
+          Action <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+          <li><a href="#">Mark as read</a></li>
+          <li><a href="#">Mark as unread</a></li>
+          <li class="divider"></li>
+          <li><a href="#">Move to junk</a></li>
+          <li class="divider"></li>
+          <li><a href="#">Delete</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-sm-6 search-form">
+      <ol class='breadcrumb'>
+        <li><%= link_to '',root_path, class:"fa fa-home", title:'home' %></li>
+        <%= render_breadcrumbs :tag => :li, :separator => "" %>
+      </ol>
+    </div>
+  </div><!-- /.row -->
 
-<div class="col-md-3 col-sm-6 col-xs-12">
-  <%= info_box("CheckOuts", 1000, "bg-yellow", "fa-cloud-download",) %>
-</div><!-- /.col -->
+  <div class="table-responsive">
+    <!-- THE MESSAGES -->
+    <table class="table table-mailbox">
+      <% @folder.documents.each do |document| %>
+      <tr class="unread">
+        <td class="small-col"><input type="checkbox" /></td>
+        <td class="small-col"><i class='fa <%= document.icon %>'></i> </td>
+        <td class="name"><%= document.name %></td>
+        <td class="subject"><%= link_to document.name, document_path(document) %></td>
+        <td class="time"><%= document.created_at.to_s_br %></td>
+      </tr>
+      <% end if @folder.present? %>
+    </table>
+  </div><!-- /.table-responsive -->
+</div><!-- /.col (RIGHT) -->
 
-<div class="col-md-3 col-sm-6 col-xs-12">
-  <%= info_box("Novas versões", 1000, "bg-red", "fa-cloud-upload",) %>
-</div><!-- /.col -->
+
