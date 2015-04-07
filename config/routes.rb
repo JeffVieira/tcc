@@ -1,12 +1,22 @@
 Rails.application.routes.draw do
 
+  resources :notifications do
+    collection do
+      get :notification
+      get :vencimento
+      get :checkout
+    end
+  end
+
+  resources :checkins
+
   resources :folders
 
   resources :documents do
     collection do
       get :checkout
-      get :checkin
-      post :checkin_create
+      get :validar
+      post :validar_create
     end
   end
 

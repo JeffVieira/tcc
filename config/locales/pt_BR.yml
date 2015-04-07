@@ -23,6 +23,9 @@ pt_BR:
       folder:
         one: "Diretório"
         other: "Diretórios"
+      notification:
+        one: "Notificação"
+        other: "Notificações"
     attributes:
       user:
         name: "Nome"
@@ -49,6 +52,8 @@ pt_BR:
         process_id: "Tipo do processo"
       relation:
         document_type_id: "Tipo de documento"
+      notification:
+        description: "Descrição"
 
   date:
     abbr_day_names:

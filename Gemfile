@@ -12,9 +12,9 @@ gem 'devise'
 gem 'bootstrap-sass'
 gem 'bootstrap-datepicker-rails'
 # Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
+gem 'uglifier'
 # Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails', '~> 4.1.0'
+#gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
@@ -57,9 +57,18 @@ gem "acts_as_tree"
 
 gem "select2-rails", '3.5.9.1'
 
+gem 'pundit', '~> 0.2.3'
+
+gem 'pundit_roles', :git => 'https://522393f1b11b745b9641c69542bce82004146909:x-oauth-basic@github.com/Sislam2/pundit_roles.git'
+
+gem "cocoon"
+
+gem 'acts_as_versioned', :git => "https://github.com/technoweenie/acts_as_versioned.git"
+#gem 'acts_as_versioned', :path => "/path/to/foo"
+
 group :development, :test do
 
-  gem 'adminlte-generators'
+  #gem 'adminlte-generators'
   #gem 'rspec'
   gem 'test-unit'
   gem 'rspec-rails'
