@@ -44,7 +44,7 @@
       <li class="active"><a href="#tab_1" data-toggle="tab">Documento inline</a></li>
       <li><a href="#info" data-toggle="tab">Informações</a></li>
       <li><a href="#tab_3" data-toggle="tab">Histórico</a></li>
-
+      <li><a href="#versions" data-toggle="tab">Versões</a></li>
       <li class="pull-right header">
 
       </li>
@@ -52,6 +52,7 @@
 
     <div class="tab-content">
       <div class="tab-pane active" id="tab_1">
+        <%= render partial:"view_pdf" %>
       </div>
       <div class="tab-pane" id="info">
         <b>Status:</b>
@@ -85,6 +86,25 @@
                 <td><%= history.action %></td>
                 <td><%= history.user.name %></td>
                 <td><%= history.created_at.to_s_br %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="tab-pane" id="versions">
+        <table class="table">
+          <thead>
+            <th>Titulo</th>
+            <th>Autor</th>
+            <th>Data</th>
+          </thead>
+          <tbody>
+            <% @document.versions.order(id: :desc).each do |version| %>
+              <tr>
+                <td><%= version.name %></td>
+                <td><%= User.find(version.user_id).name %></td>
+                <td><%= version.created_at %></td>
               </tr>
             <% end %>
           </tbody>

@@ -9,15 +9,15 @@
     <ul class="pull-right dropdown">
         <a href="#" class="text-muted dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false"><i class="fa fa-gear"></i></a>
         <ul class="dropdown-menu">
-          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Documento</a></li>
-          <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Diretório</a></li>
+          <li role="presentation"><%= link_to "Documento", new_document_path(folder_id: @folder, id_to_redirect: @folder.id, current_folder_id:@folder.id) %></li>
+          <li role="presentation"><%= link_to "Diretório", new_folder_path(folder_id: @folder, current_folder_id:@folder.id) %></li>
           <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Processo</a></li>
           <li role="presentation" class="divider"></li>
           <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Editar</a></li>
         </ul>
       </ul>
   </div>
-  <%= link_to new_document_path(folder_id: @folder, id_to_redirect: @folder.id), class:'btn btn-primary btn-block'  do %>
+  <%= link_to new_document_path(folder_id: @folder, id_to_redirect: @folder.id, current_folder_id:@folder.id), class:'btn btn-primary btn-block'  do %>
     <span class="fa fa-plus"></span>
       Novo documento
   <% end %>

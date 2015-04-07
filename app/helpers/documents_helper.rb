@@ -26,9 +26,9 @@ module DocumentsHelper
     when 1
       link_to "<i class='fa fa-anchor'></i> CheckOut".html_safe, checkout_documents_path(id:@document.id), class: "btn btn-block btn-primary"
     when 2
-      link_to "<i class='fa fa-check-square'></i> CheckIn".html_safe, checkin_documents_path(document_id:@document.id), class: "btn btn-block btn-primary"
+      link_to "<i class='fa fa-check-square'></i> CheckIn".html_safe, new_checkin_path(document_id:@document.id), class: "btn btn-block btn-primary"
     when 3
-      link_to "<i class='fa fa-thumbs-up'></i> Validar".html_safe, "#", class: "btn btn-block btn-primary"
+      link_to "<i class='fa fa-thumbs-up'></i> Validar".html_safe, validar_documents_path(id:@document.id), class: "btn btn-block btn-primary"
     end
   end
 end

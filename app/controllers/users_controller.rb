@@ -1,13 +1,5 @@
 class UsersController < ApplicationController
-
-  def index
-    @q = User.ransack(params[:q])
-
-    @users = @q.result(distinct: true).order(:id).paginate(:page => params[:page])
-  end
-
   def dashboard
-
   end
 
   private

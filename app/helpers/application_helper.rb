@@ -18,10 +18,9 @@ module ApplicationHelper
     end
   end
 
-  def admin_link(link="#",text="Novo" , icon="fa-angle-double-right")
-    nav_link link do
-        ("<i class='fa #{icon}'></i>"+
-        text).html_safe
+  def admin_link(link="#",text="Novo" , icon="fa-plus")
+    link_to link do
+      ("<i class='fa #{icon}'></i>"+text).html_safe
     end
   end
 

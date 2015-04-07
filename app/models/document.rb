@@ -23,6 +23,8 @@ class Document < ActiveRecord::Base
     },
   }, :only => [nil]
 
+  acts_as_versioned :if => Proc.new { |t| t.do_version == true }
+
   validates :name, :date_validity, :arquivo, :document_type_id, :folder_id, presence: true
   #validates :notification_period, numericality: { only_integer: true }
 
@@ -35,21 +37,15 @@ class Document < ActiveRecord::Base
   belongs_to :document_type
 
   has_many :document_histories
+  has_many :checkins
 
   has_one :new_version, class_name: "Document", primary_key: "document_id"
-  belongs_to :old_version, class_name: "Document", foreign_key: "document_id"
+  belongs_to :feather, class_name: "Document", foreign_key: "document_id"
 
-  attr_accessor :icon
+  attr_accessor :icon, :do_version
   after_initialize :set_icon
-  before_save :check_is_a_version
 
-  scope :aguardando_validacao, -> { where(:status=>3) }
-
-  def check_is_a_version
-    if document_id.present?
-      self.folder_id = nil
-    end
-  end
+  scope :aguardando_validacao, ->(user_id) { where(:status=>3, :user_id=>user_id) }
 
   def set_icon
     case arquivo_content_type

@@ -17,7 +17,9 @@
 //= require cocoon
 //= require bootstrap-datepicker/core
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.pt-BR.js
-//= require adminLTE
+//= require pdfjs/pdf.js
+//= require pdfjs/compatibility.js
+//= require pdfjs/jquery-pdfdoc.js
 //= require select2
 //= require select2_locale_"pt-BR"
 //= require_tree .
@@ -29,7 +31,7 @@ $(function() {
   Ged.actual.action = $('body').attr('data-action');
 
   try {
-    Ged[Ged.actual.controller][Ged.actual.action]['init'].call();
+    Ged[Ged.actual.controller]['init'].call();
   } catch (e) {
   }
 

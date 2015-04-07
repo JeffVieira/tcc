@@ -1,29 +1,48 @@
 <header class="header">
-  <%= link_to "GED", root_path, class:"logo"%>
   <!-- Header Navbar: style can be found in header.less -->
-  <nav class="navbar navbar-static-top" role="navigation">
-    <!-- Sidebar toggle button-->
-    <%= link_to "Cadastros", "#configrations_path", class:"navbar-btn", role:"button" %>
+  <nav class="navbar navbar-static-top" style="margin-left: 0;">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <%= link_to "GED", root_path, class:"logo"%>
+      </div>
 
-    <div class="navbar-right">
-      <ul class="nav navbar-nav">
+      <div class="collapse navbar-collapse" id="navbar-collapse">
+        <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cadastros <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><%= admin_link(documents_path,"Documento") %></li>
+            <li><%= admin_link(folders_path,"Diretório") %></li>
+            <li><%= admin_link(document_types_path,"Tipo de documento") %></li>
+            <li><%= admin_link(document_processes_path,"Processo") %></li>
+            <li><%= admin_link(users_path,"Usuário") %></li>
+            <li><%= admin_link(user_groups_path,"Grupo de usuário") %></li>
+          </ul>
+        </li>
+      </ul>
+      <form class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" id="navbar-search-input" placeholder="Search">
+        </div>
+      </form>
+      <ul class="nav navbar-nav navbar-right">
         <li class="dropdown messages-menu">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown tooltip" title="Vencimentos">
+          <%= link_to notifications_path ,title:"Vencimentos" do %>
             <i class="fa fa-calendar"></i>
             <%= content_tag(:span, @vencimentos, class: "label label-warning") if @vencimentos>0 %>
-          </a>
+          <% end %>
         </li>
         <li class="dropdown messages-menu">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown tooltip" title="Documento aguardando validação">
+          <%= link_to notifications_path ,title:"Documento aguardando validação" do %>
             <i class="fa fa-file"></i>
             <%= content_tag(:span, @checkouts, class: "label label-danger") if @checkouts>0 %>
-          </a>
+          <% end %>
         </li>
         <li class="dropdown messages-menu">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown tooltip" title="Notificações">
+          <%= link_to notifications_path ,title:"Notificações" do %>
             <i class="fa fa-envelope"></i>
             <%= content_tag(:span, @notifications, class: "label label-success") if @notifications >0 %>
-          </a>
+          <% end %>
           <ul class="dropdown-menu">
             <li class="header">You have 4 messages</li>
             <li>
@@ -133,7 +152,9 @@
             </li>
           </ul>
         </li>
+
       </ul>
-    </div>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
   </nav>
 </header>

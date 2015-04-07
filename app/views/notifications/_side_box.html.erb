@@ -1,0 +1,27 @@
+<div class="box box-solid">
+  <div class="box-header with-border">
+    <h3 class="box-title">Folders</h3>
+  </div>
+  <div class="box-body no-padding">
+    <ul class="nav nav-pills nav-stacked">
+      <li class=<%= "active" if controller.action_name == "notification" %>>
+        <%= link_to  notification_notifications_path  do %>
+          <i class="fa fa-envelope-o"></i> Notificações
+          <%= content_tag(:span, @notifications, class: "label label-primary pull-right") if @notifications>0 %>
+        <% end %>
+      </li>
+      <li class=<%= "active" if controller.action_name == "checkout" %>>
+        <%= link_to checkout_notifications_path  do %>
+          <i class="fa fa-file-text-o"></i> Aguardando validação
+          <%= content_tag(:span, @checkouts, class: "label label-primary pull-right") if @checkouts>0 %>
+        <% end %>
+      </li>
+      <li class=<%= "active" if controller.action_name == "vencimento" %> >
+        <%= link_to vencimento_notifications_path  do %>
+          <i class="fa fa-calendar"></i> Vencimento
+          <%= content_tag(:span, @vencimentos, class: "label label-primary pull-right") if @vencimentos>0 %>
+        <% end %>
+      </li>
+    </ul>
+  </div><!-- /.box-body -->
+</div><!-- /. box -->

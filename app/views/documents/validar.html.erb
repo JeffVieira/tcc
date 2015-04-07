@@ -1,0 +1,55 @@
+<section class="content invoice">
+  <div class="row">
+    <div class="col-md-6">
+      <h4>Documento atual</h4>
+      <hr />
+
+      <b>Titulo:</b>
+      <p><%= @document.name %></p>
+
+      <b>Tipo:</b>
+      <p><%= @document.document_type.name %></p>
+
+      <b>Validade:</b>
+      <p><%= @document.date_validity.to_s_br %></p>
+
+      <b>Autor/Responsável:</b>
+      <p><%= @document.user.name %></p>
+
+      <b>Documento:</b>
+      <p><%= link_to @document.arquivo_file_name, @document.arquivo.url %></p>
+    </div>
+    <div class="col-md-6">
+      <h4>Dados do checkIn</h4>
+      <hr />
+
+      <b>Titulo:</b>
+      <p><%= @new_doc.name %></p>
+
+      <b>Tipo:</b>
+      <p><%= @new_doc.document_type.name %></p>
+
+      <b>Validade:</b>
+      <p><%= @new_doc.date_validity.to_s_br %></p>
+
+      <b>Autor/Responsável:</b>
+      <p><%= @new_doc.user.name %></p>
+
+      <b>Documento:</b>
+      <p><%= link_to @new_doc.arquivo_file_name, @new_doc.arquivo.url %></p>
+    </div>
+  </div>
+
+  <%= simple_form_for(@notification, url: validar_create_documents_path) do |f| %>
+  <div class="form-inputs">
+    <%= f.input :description, as: :text %>
+    <%= f.hidden_field :user_id %>
+    <%= f.hidden_field :autor_id %>
+    <%= hidden_field_tag :document_id, @document.id %>
+  </div>
+  <div class="form-actions">
+    <%= f.button :submit, name:"notify", value:"Aceitar", class: "btn-success" %>
+    <%= f.button :submit, name:"notify" ,value:"Rejeitar", class: "btn-danger" %>
+  </div>
+<% end %>
+</section>

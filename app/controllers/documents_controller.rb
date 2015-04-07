@@ -1,30 +1,15 @@
 class DocumentsController < ApplicationController
   before_filter :get_user_groups,:get_document_type,:get_folders,  :only => [:new, :edit, :create, :update, :checkin]
 
-     layout "home", only: :show
+  before_action only: [:create] do
+    create_history("create")
+  end
+
+  layout "home", only: :show
 
   def new
     breadcrumb_for_actions("novo")
-    @document = Document.new(user_id: current_user.id, folder_id: params[:id_to_redirect] || params[:folder_id], status: 1)
-  end
-
-  def create
-    @document = Document.new(document_params)
-
-    if @document.save
-      create_history("Criado")
-      flash[:notice] = "Registro criado com sucesso"
-
-      if params[:id_to_redirect].blank?
-        redirect_to documents_path
-      else
-        redirect_to folder_path(params[:id_to_redirect])
-      end
-    else
-      breadcrumb_for_actions("Novo")
-
-      render :new
-    end
+    @document = Document.new(user_id: current_user.id, folder_id: params[:folder_id], status: 1)
   end
 
   def show
@@ -34,6 +19,11 @@ class DocumentsController < ApplicationController
 
     add_all_parent_breadcrumb(@document.folder) unless @document.folder_id.nil?
     add_breadcrumb @document.name
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def checkout
@@ -44,26 +34,31 @@ class DocumentsController < ApplicationController
     redirect_to "#{document_path(@document)}#info"
   end
 
-  def checkin
-    breadcrumb_for_actions("CheckIn")
-    @version = Document.find(params[:document_id])
-    @document = Document.new(document_id: params[:document_id], user_id: current_user.id, folder_id: @version.folder_id, document_type_id: @version.document_type_id, name:@version.name+" nova versão")
+  def validar
+    @document = Document.find(params[:id])
+    @new_doc = @document.checkins.last
+
+    @notification = Notification.new
   end
 
-  def checkin_create
-    @document = Document.new(document_params)
-    @document.old_version.update_attributes(status: 3)
-
-    if @document.save
-      create_history("CheckIn", @document.old_version.id)
-      flash[:notice] = "CheckIn criado com sucesso"
-
-      redirect_to document_path(@document.old_version)
+  def validar_create
+    @document = Document.find(params[:document_id])
+    if params[:notify] == "Aceitar"
+      doc_new = @document.checkins.last
+      @document.update_attributes(status: 1, do_version: true,
+        name: doc_new.name,
+        date_validity: doc_new.date_validity,
+        notification_period: doc_new.notification_period,
+        document_type_id: doc_new.document_type_id,
+        folder_id: doc_new.folder_id)
+      create_history("Nova versão aceita")
     else
-      breadcrumb_for_actions("checkIn")
-      @version = Document.find(params[:document][:document_id])
-      render :checkin
+      @document.update_attributes(status: 1, do_version: false)
+      create_history("Nova versão rejeitada")
     end
+    Notification.create(notification_params)
+
+    redirect_to  document_path(@document)
   end
 
   def download
@@ -73,7 +68,7 @@ class DocumentsController < ApplicationController
 
   private
     def create_history(action, document_id=nil)
-      DocumentHistory.create(document_id: document_id||@document.id, user_id: current_user.id, action: action)
+      DocumentHistory.create(document_id: document_id||@document.id, user_id: current_user.id, action: action) unless document_id.blank? && @document.blank?
     end
 
     def get_user_groups
@@ -95,5 +90,9 @@ class DocumentsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def document_params
       params.require(:document).permit(:name, :date_validity, :checkout, :notification_period, :user_id, :arquivo, :folder_id, :document_type_id, :id_to_redirect, :document_id, :status)
+    end
+
+    def notification_params
+      params.require(:notification).permit(:description, :user_id, :autor_id)
     end
 end

@@ -5,14 +5,18 @@ class ApplicationController < ActionController::Base
   include Pundit
 
   protect_from_forgery with: :exception
-  before_action :authenticate_user!, :get_side_bar_files, :get_current_user_notifications
+  before_action :authenticate_user!, :get_side_bar_files, :get_current_user_notifications, :check_current_folder
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
+
+  def check_current_folder
+    session[:current_folder_id] = params[:current_folder_id] if params[:current_folder_id].present?
+  end
 
   def get_current_user_notifications
     if signed_in?
       @vencimentos = 0
-      @checkouts = current_user.documents.aguardando_validacao.size
+      @checkouts = current_user.documents.aguardando_validacao(current_user.id).size
       @notifications = 0
     else
       @vencimentos = 0
