@@ -17,10 +17,7 @@
         </ul>
       </ul>
   </div>
-  <%= link_to new_document_path(folder_id: @folder, id_to_redirect: @folder.id, current_folder_id:@folder.id), class:'btn btn-primary btn-block'  do %>
-    <span class="fa fa-plus"></span>
-      Novo documento
-  <% end %>
+  <%= button_new_document(@folder) %>
   <!-- Navigation - folders-->
   <div style="margin-top: 15px;">
 

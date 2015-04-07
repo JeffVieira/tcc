@@ -24,11 +24,11 @@ module DocumentsHelper
   def button_action
     case @document.status
     when 1
-      link_to "<i class='fa fa-anchor'></i> CheckOut".html_safe, checkout_documents_path(id:@document.id), class: "btn btn-block btn-primary"
+      link_to "<i class='fa fa-anchor'></i> CheckOut".html_safe, checkout_documents_path(id:@document.id), class: "btn btn-block btn-primary" if current_user.can?('document:checkout')
     when 2
-      link_to "<i class='fa fa-check-square'></i> CheckIn".html_safe, new_checkin_path(document_id:@document.id), class: "btn btn-block btn-primary"
+      link_to "<i class='fa fa-check-square'></i> CheckIn".html_safe, new_checkin_path(document_id:@document.id), class: "btn btn-block btn-primary" if current_user.can?('document:verssion')
     when 3
-      link_to "<i class='fa fa-thumbs-up'></i> Validar".html_safe, validar_documents_path(id:@document.id), class: "btn btn-block btn-primary"
+      link_to "<i class='fa fa-thumbs-up'></i> Validar".html_safe, validar_documents_path(id:@document.id), class: "btn btn-block btn-primary" if current_user.can?('document:validate')
     end
   end
 end

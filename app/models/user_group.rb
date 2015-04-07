@@ -4,6 +4,9 @@ class UserGroup < ActiveRecord::Base
   has_many :permissions, :dependent => :delete_all
   accepts_nested_attributes_for :permissions
 
+  has_many :users_user_groups
+  has_many :users, through: :users_user_groups
+
   def save_permissions(codes)
     delete_permissions(codes)
     create_permissions(codes)

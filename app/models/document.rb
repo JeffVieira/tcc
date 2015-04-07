@@ -1,11 +1,15 @@
 class Document < ActiveRecord::Base
 
   permissions :add => {
+    "document:new" => {
+      :title => "Criar",
+      :description => "Permite cadastrar novos documentos"
+    },
     "document:checkout" => {
       :title => "CheckOut",
       :description => "A permissão de administrador sobrescreve toda as outras permissões de sistema. Esta permissão não é considerada quando é buscada permissões de um grupo."
     },
-    "documento:edit" => {
+    "document:edit" => {
       :title => "Editar",
       :description => "Permite ver e alterar (incluir e excluir) papéis de sistema dos usuários cadastrados."
     },
