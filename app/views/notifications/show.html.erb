@@ -1,0 +1,47 @@
+<div class="col-md-12">
+  <div class="box box-primary">
+    <div class="box-header with-border">
+      <h3 class="box-title">Ler Notificação</h3>
+      <div class="box-tools pull-right">
+        <a href="#" class="btn btn-box-tool" data-toggle="tooltip" title="" data-original-title="Previous"><i class="fa fa-chevron-left"></i></a>
+        <a href="#" class="btn btn-box-tool" data-toggle="tooltip" title="" data-original-title="Next"><i class="fa fa-chevron-right"></i></a>
+      </div>
+    </div><!-- /.box-header -->
+    <div class="box-body no-padding">
+      <div class="mailbox-read-info">
+        <h3><%= @notification.autor.name %></h3>
+        <h5>De: <%= @notification.autor.email %> <span class="mailbox-read-time pull-right"> <%= @notification.created_at %></span></h5>
+      </div><!-- /.mailbox-read-info -->
+
+      <div class="mailbox-read-message" style="min-height: 300px;">
+        <p><%= @notification.description %></p>
+      </div><!-- /.mailbox-read-message -->
+    </div><!-- /.box-body -->
+    <div class="box-footer">
+      <% if @notification.document.present? %>
+      <ul class="mailbox-attachments clearfix">
+        <li>
+          <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o"></i></span>
+          <div class="mailbox-attachment-info">
+            <a href="#" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i> <%= @notification.document.arquivo_file_name %> </a>
+            <span class="mailbox-attachment-size">
+              <%= @notification.document.arquivo_file_size %>
+              <%= link_to @notification.document.arquivo.url, class:"btn btn-default btn-xs pull-right" do %>
+                <i class="fa fa-cloud-download"></i>
+              <% end %>
+            </span>
+          </div>
+        </li>
+      </ul>
+      <% end %>
+    </div><!-- /.box-footer -->
+    <div class="box-footer">
+      <div class="pull-right">
+      </div>
+      <%= link_to notification_path(@notification), method: :delete do %>
+        <button class="btn btn-default"><i class="fa fa-trash-o"></i> Excluir</button>
+      <% end %>
+      <button class="btn btn-default"><i class="fa fa-print"></i> Imprimir</button>
+    </div><!-- /.box-footer -->
+  </div><!-- /. box -->
+</div>

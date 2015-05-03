@@ -35,26 +35,7 @@
 <!-- /.col (LEFT) -->
 <div class="col-md-9 col-sm-8">
   <div class="row pad">
-    <div class="col-sm-6">
-      <label style="margin-right: 10px;">
-      <input type="checkbox" id="check-all"/>
-      </label>
-      <!-- Action button -->
-      <div class="btn-group">
-        <button type="button" class="btn btn-default btn-sm btn-flat dropdown-toggle" data-toggle="dropdown">
-          Action <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu" role="menu">
-          <li><a href="#">Mark as read</a></li>
-          <li><a href="#">Mark as unread</a></li>
-          <li class="divider"></li>
-          <li><a href="#">Move to junk</a></li>
-          <li class="divider"></li>
-          <li><a href="#">Delete</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="col-sm-6 search-form">
+    <div class="col-sm-12 search-form">
       <ol class='breadcrumb'>
         <li><%= link_to '',root_path, class:"fa fa-home", title:'home' %></li>
         <%= render_breadcrumbs :tag => :li, :separator => "" %>
@@ -64,13 +45,13 @@
 
   <div class="table-responsive">
     <!-- THE MESSAGES -->
-    <table class="table table-mailbox">
+    <table class="table table-hover">
       <% @documents.each do |document| %>
-      <tr class="unread">
-        <td class="small-col"><input type="checkbox" /></td>
+      <tr>
         <td class="small-col"><i class='fa <%= document.icon %>'></i> </td>
         <td class="name"><%= document.name %></td>
         <td class="subject"><%= link_to document.name, document_path(document) %></td>
+        <td><%= status_badge(document.status) %></td>
         <td class="time"><%= document.created_at.to_s_br %></td>
       </tr>
       <% end if @folder.present? %>

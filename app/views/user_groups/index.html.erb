@@ -1,4 +1,28 @@
-<section class="content invoice">
+<section class="invoice">
+
+  <div class="row">
+    <%= search_form_for @q, url: search_user_groups_path, html: { method: :post } do |f| %>
+    <div class="col-lg-12">
+      <div class="form-group">
+        <%= f.label :name %>
+        <%= f.search_field :name_cont, class: "string form-control", label: false %>
+      </div>
+    </div>
+
+    <div class="col-lg-12">
+    <div class="form-action.search">
+      <div class="pull-right">
+        <%= link_to 'Limpar', user_groups_path, class: "btn btn-default" %>
+        <%= f.submit :Pesquisar, class: "btn btn-success" %>
+      </div>
+      <% end %>
+    </div>
+    </div>
+  </div>
+
+  <hr />
+
+
   <div class="row">
     <div class="col-xs-12">
       <div class="box-body table-responsive">
@@ -9,19 +33,21 @@
               <%= link_to new_user_group_path(@user_group), class:'btn btn-success'  do %>
                 <span class="fa fa-plus"></span>
                 Novo
-              <% end %>
+              <% end if current_user.can?("usergroup:new") %>
             </th>
           </thead>
           <tbody>
             <%= content_tag_for(:tr, @user_groups) do |user_group| %>
               <td><%= user_group.name %></td>
               <td>
-                <%= edit_buttom(edit_user_group_path(user_group)) %>
-                <%= destroy_buttom(user_group) %>
+                <%= edit_buttom(edit_user_group_path(user_group), "usergroup:edit") %>
+                <%= destroy_buttom(user_group, "usergroup:destroy") %>
               </td>
             <% end %>
           </tbody>
         </table>
+
+        <%= render partial:"layouts/willpaginate", locals: { list:@user_groups } %>
       </div>
     </div>
   </div>

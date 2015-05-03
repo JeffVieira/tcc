@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
     if signed_in?
       @vencimentos = 0
       @checkouts = current_user.documents.aguardando_validacao(current_user.id).size
-      @notifications = 0
+      @notifications = current_user.notifications.unread.size
     else
       @vencimentos = 0
       @checkouts = 0

@@ -1,4 +1,11 @@
 class DocumentProcess < ActiveRecord::Base
+  permissions :add=>{
+    "document_process:index" => {
+      :title => "Acessar Cadastro",
+      :description => "Permite cadastrar novos documentos"
+    },
+  } ,:only=> [:new, :edit, :destroy]
+
   validates :name, presence: true
 
   has_many :document_types_document_process

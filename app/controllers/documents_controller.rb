@@ -1,11 +1,12 @@
 class DocumentsController < ApplicationController
   before_filter :get_user_groups,:get_document_type,:get_folders,  :only => [:new, :edit, :create, :update, :checkin]
 
-  before_action only: [:create] do
+  after_action only: [:create] do
     create_history("create")
+    #do_ocr
   end
 
-  layout "home", only: :show
+  layout "home", only: [:show, :started]
 
   def new
     breadcrumb_for_actions("novo")
@@ -50,15 +51,27 @@ class DocumentsController < ApplicationController
         date_validity: doc_new.date_validity,
         notification_period: doc_new.notification_period,
         document_type_id: doc_new.document_type_id,
-        folder_id: doc_new.folder_id)
+        folder_id: doc_new.folder_id,
+        tag: doc_new.tag)
       create_history("Nova versão aceita")
     else
       @document.update_attributes(status: 1, do_version: false)
       create_history("Nova versão rejeitada")
     end
-    Notification.create(notification_params)
 
+    create_notification
     redirect_to  document_path(@document)
+  end
+
+  def create_started
+    document = Document.find(params[:id])
+    DocumentUser.create(:user_id=>current_user.id, :document_id=>document.id)
+
+    redirect_to document_path(document.id)
+  end
+
+  def started
+    @documents = current_user.starteds.paginate(:page => params[:page], per_page: 20)
   end
 
   def download
@@ -67,6 +80,11 @@ class DocumentsController < ApplicationController
   end
 
   private
+    def create_notification
+      binding.pry
+      Notification.create(notification_params) unless current_user.id.to_s == notification_params[:autor_id]
+    end
+
     def create_history(action, document_id=nil)
       DocumentHistory.create(document_id: document_id||@document.id, user_id: current_user.id, action: action) unless document_id.blank? && @document.blank?
     end
@@ -89,10 +107,22 @@ class DocumentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def document_params
-      params.require(:document).permit(:name, :date_validity, :checkout, :notification_period, :user_id, :arquivo, :folder_id, :document_type_id, :id_to_redirect, :document_id, :status)
+      params.require(:document).permit(:name, :date_validity, :checkout, :notification_period, :user_id, :arquivo, :folder_id, :document_type_id, :id_to_redirect, :status, :tag)
     end
 
     def notification_params
       params.require(:notification).permit(:description, :user_id, :autor_id)
+    end
+
+    def do_ocr
+      require 'tesseract'
+
+      e = Tesseract::Engine.new {|e|
+        e.language  = :eng
+        e.blacklist = '|'
+      }
+
+      binding.pry
+      @document.text_for(@document.arquivo.url)
     end
 end

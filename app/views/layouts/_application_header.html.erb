@@ -11,12 +11,12 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Cadastros <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><%= admin_link(documents_path,"Documento") %></li>
-            <li><%= admin_link(folders_path,"Diretório") %></li>
-            <li><%= admin_link(document_types_path,"Tipo de documento") %></li>
-            <li><%= admin_link(document_processes_path,"Processo") %></li>
-            <li><%= admin_link(users_path,"Usuário") %></li>
-            <li><%= admin_link(user_groups_path,"Grupo de usuário") %></li>
+            <li><%= admin_link(documents_path,"Documento") if current_user.can?('document:index') %></li>
+            <li><%= admin_link(folders_path,"Diretório") if current_user.can?('folder:index') %></li>
+            <li><%= admin_link(document_types_path,"Tipo de documento") if current_user.can?('document_type:index') %></li>
+            <li><%= admin_link(document_processes_path,"Processo") if current_user.can?('document_process:index') %></li>
+            <li><%= admin_link(users_path,"Usuário") if current_user.can?('user:index') %></li>
+            <li><%= admin_link(user_groups_path,"Grupo de usuário") if current_user.can?('user_group:index') %></li>
           </ul>
         </li>
       </ul>
@@ -27,19 +27,19 @@
       </form>
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown messages-menu">
-          <%= link_to notifications_path ,title:"Vencimentos" do %>
+          <%= link_to vencimento_notifications_path ,title:"Vencimentos" do %>
             <i class="fa fa-calendar"></i>
             <%= content_tag(:span, @vencimentos, class: "label label-warning") if @vencimentos>0 %>
           <% end %>
         </li>
         <li class="dropdown messages-menu">
-          <%= link_to notifications_path ,title:"Documento aguardando validação" do %>
+          <%= link_to checkout_notifications_path ,title:"Documento aguardando validação" do %>
             <i class="fa fa-file"></i>
             <%= content_tag(:span, @checkouts, class: "label label-danger") if @checkouts>0 %>
           <% end %>
         </li>
         <li class="dropdown messages-menu">
-          <%= link_to notifications_path ,title:"Notificações" do %>
+          <%= link_to notification_notifications_path ,title:"Notificações" do %>
             <i class="fa fa-envelope"></i>
             <%= content_tag(:span, @notifications, class: "label label-success") if @notifications >0 %>
           <% end %>
@@ -131,11 +131,11 @@
             <!-- Menu Body -->
             <li class="user-body">
               <div class="col-xs-6 text-center">
-                <a href="#">CheckOuts</a>
+                <%= link_to('Relatórios', statistics_path, :class=>'') %>
               </div>
 
               <div class="col-xs-6 text-center">
-                <a href="#">Vencimentos</a>
+                <%= link_to('Administração', sistem_configurations_path, :class=>'') %>
               </div>
             </li>
             <!-- Menu Footer-->
@@ -143,9 +143,7 @@
               <div class="pull-left">
                 <%= link_to('Conta', edit_user_registration_path, :class=>'btn btn-default btn-flat') %>
               </div>
-              <div class="pull-left">
-                <%= link_to('Administração', sistem_configurations_path, :class=>'btn btn-default btn-flat') %>
-              </div>
+
               <div class="pull-right">
                 <%= link_to('Sair', destroy_user_session_path, :method => :delete, :class=>'btn btn-default btn-flat') %>
               </div>

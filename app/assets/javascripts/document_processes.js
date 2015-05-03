@@ -13,7 +13,6 @@ Ged.document_processes = {
 
           $('#document_types').bind('cocoon:after-insert',
             function(e, tag) {
-              console.log("test1");
               $(".relation-fields a.add_fields").
                    data("association-insertion-position", 'before').
                    data("association-insertion-node", 'this');

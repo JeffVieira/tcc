@@ -6,7 +6,7 @@
         <%= link_to new_folder_path(@folder), class:'btn btn-success'  do %>
           <span class="fa fa-plus"></span>
           Novo
-        <% end %>
+        <% end if current_user.can?('folder:new') %>
       </th>
     </thead>
 
@@ -16,8 +16,8 @@
         <td><%= folder.name %></td>
         <td>
           <%= show_buttom(folder_path(folder)) %>
-          <%= edit_buttom(edit_folder_path(folder)) %>
-          <%= destroy_buttom(folder) %>
+          <%= edit_buttom(edit_folder_path(folder), "folder:edit") %>
+          <%= destroy_buttom(folder, "folder:destroy") %>
         </td>
       </tr>
       <% end %>

@@ -7,11 +7,11 @@
     <%= f.input :name %>
     <%= f.input :date_validity, as: :string, input_html: {class: "datepicker", value: (l(f.object.date_validity) if !f.object.date_validity.nil?)}, required: true %>
     <%= f.input :notification_period, input_html: {placeholder: "Informe número de dias para aviso"} %>
+    <%= f.input :tag, as: :text, hint: 'Informe tags separando por virgulas' %>
     <%= f.input :arquivo, as: :file, hint: "Somente PDF e imagens podem ser anexados" %>
     <%= link_to(@document.arquivo_file_name, @document.arquivo.url) unless @document.arquivo.blank?  %>
 
     <%= f.hidden_field :user_id %>
-    <%= f.hidden_field :document_id %>
     <%= f.hidden_field :status %>
     <%= hidden_field_tag :folder_id, params[:folder_id] %>
   </div>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150407002615) do
+ActiveRecord::Schema.define(version: 20150503201540) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20150407002615) do
     t.string   "arquivo_content_type"
     t.integer  "arquivo_file_size"
     t.datetime "arquivo_updated_at"
+    t.text     "tag"
   end
 
   create_table "configurations", force: :cascade do |t|
@@ -66,6 +67,13 @@ ActiveRecord::Schema.define(version: 20150407002615) do
     t.integer "document_process_id"
   end
 
+  create_table "document_users", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "document_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "document_versions", force: :cascade do |t|
     t.integer  "document_id"
     t.integer  "version"
@@ -83,6 +91,8 @@ ActiveRecord::Schema.define(version: 20150407002615) do
     t.integer  "arquivo_file_size"
     t.datetime "arquivo_updated_at"
     t.integer  "status"
+    t.date     "date_notification"
+    t.text     "tag"
   end
 
   add_index "document_versions", ["document_id"], name: "index_document_versions_on_document_id", using: :btree
@@ -91,18 +101,20 @@ ActiveRecord::Schema.define(version: 20150407002615) do
     t.string   "name"
     t.date     "date_validity"
     t.boolean  "checkout"
-    t.string   "notification_period"
     t.integer  "user_id"
     t.integer  "document_type_id"
     t.integer  "folder_id"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
     t.string   "arquivo_file_name"
     t.string   "arquivo_content_type"
     t.integer  "arquivo_file_size"
     t.datetime "arquivo_updated_at"
     t.integer  "status"
     t.integer  "version"
+    t.date     "date_notification"
+    t.integer  "notification_period",  default: 0
+    t.text     "tag"
   end
 
   create_table "folders", force: :cascade do |t|
@@ -118,8 +130,10 @@ ActiveRecord::Schema.define(version: 20150407002615) do
     t.text     "description"
     t.integer  "user_id"
     t.integer  "autor_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.boolean  "read",        default: false
+    t.integer  "document_id"
   end
 
   create_table "permissions", force: :cascade do |t|
@@ -157,6 +171,7 @@ ActiveRecord::Schema.define(version: 20150407002615) do
     t.inet     "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "sing"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

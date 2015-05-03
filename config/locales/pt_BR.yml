@@ -26,6 +26,9 @@ pt_BR:
       notification:
         one: "Notificação"
         other: "Notificações"
+      statistics:
+        one: "Estatística"
+        other: "Estatísticas"
     attributes:
       user:
         name: "Nome"

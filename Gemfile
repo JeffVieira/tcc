@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.0'
+gem 'rails', '4.2.1'
 # Use postgresql as the database for Active Record
 gem 'pg'
 # Use SCSS for stylesheets
@@ -26,6 +26,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'whenever', :require => false
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -64,7 +65,13 @@ gem 'pundit_roles', :git => 'https://522393f1b11b745b9641c69542bce82004146909:x-
 gem "cocoon"
 
 gem 'acts_as_versioned', :git => "https://github.com/technoweenie/acts_as_versioned.git"
-#gem 'acts_as_versioned', :path => "/path/to/foo"
+
+gem "chartkick"
+
+gem 'origami', :git => "https://github.com/mobmewireless/origami-pdf.git"
+#gem 'tesseract-ocr'
+
+gem 'railroady'
 
 group :development, :test do
 

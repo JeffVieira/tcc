@@ -1,8 +1,17 @@
 Rails.application.routes.draw do
 
+  resources :statistics do
+    collection do
+      get :data_grid
+      get :chart
+    end
+  end
+
   resources :notifications do
     collection do
       get :notification
+      get :read_all
+      get :delete_all
       get :vencimento
       get :checkout
     end
@@ -17,6 +26,8 @@ Rails.application.routes.draw do
       get :checkout
       get :validar
       post :validar_create
+      get :started
+      get :create_started
     end
   end
 
@@ -28,12 +39,15 @@ Rails.application.routes.draw do
 
   resource :sistem_configurations
 
-  resources :user_groups
+  resources :user_groups do
+    collection do
+      match 'search' => 'user_groups#search', via: [:get, :post], as: :search
+    end
+  end
 
   resources :global_searchs
   resources :users do
     collection do
-      get :dashboard
       match 'search' => 'users#search', via: [:get, :post], as: :search
     end
   end

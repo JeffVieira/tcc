@@ -16,7 +16,7 @@
  * @version     0.7
  */
 
-PDFJS.workerSrc = '/pdfjs/pdf.worker.js';
+//PDFJS.workerSrc = '/pdfjs/pdf.worker.js';
 
 // PDFJS.disableWorker = true;
 

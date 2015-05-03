@@ -43,8 +43,8 @@
   <%= simple_form_for(@notification, url: validar_create_documents_path) do |f| %>
   <div class="form-inputs">
     <%= f.input :description, as: :text %>
-    <%= f.hidden_field :user_id %>
-    <%= f.hidden_field :autor_id %>
+    <%= f.hidden_field :user_id, value:@new_doc.user_id %>
+    <%= f.hidden_field :autor_id, value:current_user.id %>
     <%= hidden_field_tag :document_id, @document.id %>
   </div>
   <div class="form-actions">

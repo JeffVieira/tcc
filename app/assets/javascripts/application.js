@@ -19,9 +19,12 @@
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.pt-BR.js
 //= require pdfjs/pdf.js
 //= require pdfjs/compatibility.js
-//= require pdfjs/jquery-pdfdoc.js
+
 //= require select2
 //= require select2_locale_"pt-BR"
+//= require jsapi
+//= require knob
+//= require chartkick
 //= require_tree .
 
 $(function() {
@@ -31,7 +34,7 @@ $(function() {
   Ged.actual.action = $('body').attr('data-action');
 
   try {
-    Ged[Ged.actual.controller]['init'].call();
+    Ged[Ged.actual.controller][Ged.actual.action]['init'].call();
   } catch (e) {
   }
 

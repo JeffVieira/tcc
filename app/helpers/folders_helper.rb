@@ -16,4 +16,18 @@ module FoldersHelper
     end
   end
 
+  def status_badge(status)
+    case status
+    when 1
+      content_tag(:spam, Document::STATUS[status], class: "label label-success")
+    when 2
+      content_tag(:spam, Document::STATUS[status], class: "label label-danger")
+    when 3
+      content_tag(:spam, Document::STATUS[status], class: "label label-warning")
+    else
+      content_tag(:spam, Document::STATUS[status], class: "label label-info")
+    end
+  end
+
+
 end

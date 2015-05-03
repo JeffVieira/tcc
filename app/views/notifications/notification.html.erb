@@ -5,6 +5,47 @@
       <%= render "side_box" %>
     </div><!-- /.col -->
     <div class="col-md-9">
+      <div class="box box-primary">
+        <div class="box-header with-border">
+          <h3 class="box-title">Notificações</h3>
+          <!-- /<div class="box-tools pull-right">
+            <div class="has-feedback">
+              <input type="text" class="form-control input-sm" placeholder="Search Mail">
+              <span class="glyphicon glyphicon-search form-control-feedback"></span>
+            </div>
+          </div>.box-tools -->
+        </div><!-- /.box-header -->
+        <div class="box-body no-padding">
+          <div class="mailbox-controls">
+            <%= render "notification_paginate" %>
+          </div>
+          <div class="table-responsive mailbox-messages">
+            <table class="table table-hover table-striped">
+              <tbody>
+                <% @user_notifications.each do |notify| %>
+                <tr>
+                  <td class="mailbox-star"><a href="#"><i class="fa <%= notify.icon %> text-yellow"></i></a></td>
+                  <td class="mailbox-subject"><b><%= link_to notify.autor.name, notification_path(notify) %></b></td>
+                  <td class="mailbox-name"><%= link_to notify.description, notification_path(notify) %></td>
+                  <td class="mailbox-attachment"></td>
+                  <td class="mailbox-date"><%= notify.created_at %></td>
+                </tr>
+                <% end %>
+                <% if @user_notifications.blank? %>
+                <tr>
+                  <td>Notificações não lidas 0</td>
+                </tr>
+                <% end %>
+              </tbody>
+            </table><!-- /.table -->
+          </div><!-- /.mail-box-messages -->
+        </div><!-- /.box-body -->
+        <div class="box-footer no-padding">
+          <div class="mailbox-controls">
+            <%= render "notification_paginate" %>
+          </div>
+        </div>
+      </div><!-- /. box -->
     </div>
   </div>
 </section>

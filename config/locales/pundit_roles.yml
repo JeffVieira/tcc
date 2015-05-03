@@ -9,3 +9,7 @@ pt_BR:
       user: "Usuários"
       home: "Home"
       document: "Documento"
+      folder: "Diretório"
+      documenttype: "Tipo de documento"
+      documentprocess: "Processo"
+      usergroup: "Grupo de usuários"

@@ -1,4 +1,11 @@
 class UserGroup < ActiveRecord::Base
+  permissions :add=>{
+    "user_group:index" => {
+      :title => "Acessar Cadastro",
+      :description => "Permite cadastrar novos documentos"
+    },
+  } ,:only=> [:new, :edit, :destroy]
+
   validates :name, presence: true, uniqueness: true
 
   has_many :permissions, :dependent => :delete_all

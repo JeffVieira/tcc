@@ -1,4 +1,11 @@
 class Folder < ActiveRecord::Base
+    permissions :add=>{
+    "folder:index" => {
+      :title => "Acessar Cadastro",
+      :description => "Permite cadastrar novos documentos"
+    },
+  } ,:only=> [:new, :edit, :destroy]
+
   acts_as_tree
 
   has_many :documents

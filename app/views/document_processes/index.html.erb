@@ -10,7 +10,7 @@
               <%= link_to new_document_process_path(@document_processes), class:'btn btn-success'  do %>
                 <span class="fa fa-plus"></span>
                   Novo
-              <% end %>
+              <% end if current_user.can?('documentprocess:new') %>
             </th>
           </thead>
           <tbody>
@@ -18,8 +18,8 @@
               <td><%= process.name %></td>
               <td><%= process.document_types.size %></td>
               <td>
-                <%= edit_buttom(edit_process_path(process)) %>
-                <%= destroy_buttom(process) %>
+                <%= edit_buttom(edit_document_process_path(process), "documentprocess:edit") %>
+                <%= destroy_buttom(process, "documentprocess:destroy") %>
               </td>
             <% end %>
           </tbody>

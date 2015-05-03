@@ -9,15 +9,15 @@
               <%= link_to new_document_type_path(@document_type), class:'btn btn-success'  do %>
                 <span class="fa fa-plus"></span>
                   Novo
-              <% end %>
+              <% end if current_user.can?('documenttype:new') %>
             </th>
           </thead>
           <tbody>
             <%= content_tag_for(:tr, @document_types) do |document_type| %>
               <td><%= document_type.name %></td>
               <td>
-                <%= edit_buttom(edit_document_type_path(document_type)) %>
-                <%= destroy_buttom(document_type) %>
+                <%= edit_buttom(edit_document_type_path(document_type), "documenttype:edit") %>
+                <%= destroy_buttom(document_type, "documenttype:destroy") %>
               </td>
             <% end %>
           </tbody>

@@ -1,15 +1,15 @@
 module ApplicationHelper
 
-  def edit_buttom(link="#")
+  def edit_buttom(link="#", permission)
     link_to link, class: "btn btn-success", title: "Editar", data: {toggle: "tooltip", placement: "bottom"} do
       "<i class='fa fa-pencil'></i>".html_safe
-    end
+    end if current_user.can?(permission)
   end
 
-  def destroy_buttom(link="#")
+  def destroy_buttom(link="#", permission)
     link_to link, method: :delete, data: { confirm: 'Você tem certeza?', toggle: "tooltip", placement: "bottom" }, class: "btn btn-danger", title: "Excluir" do
       "<i class='fa fa-close'></i>".html_safe
-    end
+    end if current_user.can?(permission)
   end
 
   def show_buttom(link="#")
@@ -28,6 +28,10 @@ module ApplicationHelper
     link_to new_document_path(folder_id: folder.id, current_folder_id:folder.id), class:'btn btn-primary btn-block'  do
       "<span class='fa fa-plus'></span> Novo documento".html_safe
     end if current_user.can?('document:new')
+  end
+
+  def link_started(current_user)
+     link_to "<i class='fa fa-star'></i> Favoritos".html_safe, started_documents_path
   end
 
 end

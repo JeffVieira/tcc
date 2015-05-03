@@ -11,7 +11,7 @@
               <%= link_to new_document_path(@document), class:'btn btn-success'  do %>
                 <span class="fa fa-plus"></span>
                   Novo
-              <% end %>
+              <% end if current_user.can?('document:new') %>
             </th>
           </thead>
           <tbody>
@@ -20,8 +20,8 @@
               <td><%= document.date_validity %></td>
               <td><%= document.user.name %></td>
               <td>
-                <%= edit_buttom(edit_document_path(document)) %>
-                <%= destroy_buttom(document) %>
+                <%= edit_buttom(edit_document_path(document), "document:edit") %>
+                <%= destroy_buttom(document, "document:destroy") %>
               </td>
             <% end %>
           </tbody>

@@ -1,10 +1,5 @@
-<div id="extruderRight" class="{title:'Visualização rápida'}">
-  <div class='extruder-loader'><i class='fa fa-spinner fa-spin' data-toggle="tooltip" title="Carregando Visualização..."></i></div>
-
-  <div id="pdf_preview">
-    <%= @document.arquivo.url %>
+  <div>
+    <canvas id="pdf_preview"></canvas>
+    <%#= image_tag @document.arquivo.url %>
   </div>
 
-</div>
-
-<%#= stylesheet_link_tag 'assets/javascripts/pdfjs/jquery-pdfdoc.css' %>

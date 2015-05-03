@@ -37,7 +37,7 @@
         <%= link_to new_user_path(@user_group), class:'btn btn-success'  do %>
           <span class="fa fa-plus"></span>
           Novo
-        <% end %>
+        <% end  if current_user.can?('user:new') %>
       </th>
     </thead>
 
@@ -47,8 +47,8 @@
         <td><%= user.name %></td>
         <td><%= user.email %></td>
         <td>
-          <%= edit_buttom(edit_user_path(user)) %>
-          <%= destroy_buttom(user) %>
+          <%= edit_buttom(edit_user_path(user), "user:edit") %>
+          <%= destroy_buttom(user, "user:destroy") %>
         </td>
       </tr>
       <% end %>

@@ -13,10 +13,7 @@
     <%= javascript_include_tag "https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js", "https://oss.maxcdn.com/respond/1.4.2/respond.min.js" %>
     <![endif]-->
 
-    <!-- Font Awesome Icons -->
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-    <!-- Ionicons -->
-    <link href="http://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
@@ -28,11 +25,6 @@
 
     <div class='row'>
       <!-- Content Header (Page header) -->
-      <section class="content-header no-margin">
-        <h1 class="text-center">
-          Mailbox
-        </h1>
-      </section>
       <% flash.each do |name, msg| %>
       <div class="no-margin">
         <div style="margin-bottom: 0px; border-radius: 0;" class="alert alert-<%= name == "notice" ? "success" : "danger" %> alert-dismissable" role = "alert">
