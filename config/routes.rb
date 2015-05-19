@@ -28,6 +28,7 @@ Rails.application.routes.draw do
       post :validar_create
       get :started
       get :create_started
+      get :download
     end
   end
 

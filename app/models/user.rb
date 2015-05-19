@@ -49,7 +49,7 @@ class User < ActiveRecord::Base
 
     def generate_sing
       loop do
-        sing = Devise.friendly_token
+        sing = OpenSSL::PKey::RSA.new 2048
         break sing unless User.where(sing: sing).first
       end
     end

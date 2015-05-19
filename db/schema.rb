@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150503201540) do
+ActiveRecord::Schema.define(version: 20150518233447) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 20150503201540) do
     t.integer  "arquivo_file_size"
     t.datetime "arquivo_updated_at"
     t.text     "tag"
+    t.text     "ocr_text"
   end
 
   create_table "configurations", force: :cascade do |t|
@@ -93,6 +94,7 @@ ActiveRecord::Schema.define(version: 20150503201540) do
     t.integer  "status"
     t.date     "date_notification"
     t.text     "tag"
+    t.text     "ocr_text"
   end
 
   add_index "document_versions", ["document_id"], name: "index_document_versions_on_document_id", using: :btree
@@ -115,6 +117,7 @@ ActiveRecord::Schema.define(version: 20150503201540) do
     t.date     "date_notification"
     t.integer  "notification_period",  default: 0
     t.text     "tag"
+    t.text     "ocr_text"
   end
 
   create_table "folders", force: :cascade do |t|

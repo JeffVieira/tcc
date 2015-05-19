@@ -15,7 +15,8 @@ module DocumentsHelper
 
   def link_to_download
     if @document.status == 1
-      link_to @document.arquivo_file_name, @document.arquivo.url
+      link_to @document.arquivo_file_name, @document.arquivo.url, target: "_blank"
+      #link_to @document.arquivo_file_name, download_documents_path(id: @document.id)
     else
       content_tag(:spam, "Link indisponivel.", class: "label label-danger", title: "Será possivel fazer download após CheckIn")
     end

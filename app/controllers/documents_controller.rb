@@ -3,7 +3,6 @@ class DocumentsController < ApplicationController
 
   after_action only: [:create] do
     create_history("create")
-    #do_ocr
   end
 
   layout "home", only: [:show, :started]
@@ -76,7 +75,12 @@ class DocumentsController < ApplicationController
 
   def download
     @document = Document.find(params[:id])
-    send_data @document.arquivo
+    send_data(
+      @document.arquivo.path,
+      filename: "#{@document.arquivo_file_name}.pdf",
+      type: "application/pdf",
+      disposition: "attachment"
+    )
   end
 
   private
@@ -112,17 +116,5 @@ class DocumentsController < ApplicationController
 
     def notification_params
       params.require(:notification).permit(:description, :user_id, :autor_id)
-    end
-
-    def do_ocr
-      require 'tesseract'
-
-      e = Tesseract::Engine.new {|e|
-        e.language  = :eng
-        e.blacklist = '|'
-      }
-
-      binding.pry
-      @document.text_for(@document.arquivo.url)
     end
 end
