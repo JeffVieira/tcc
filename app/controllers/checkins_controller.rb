@@ -19,7 +19,7 @@ class CheckinsController < ApplicationController
     if @document.save
       @version.update_attributes(status: 3)
       DocumentHistory.create(document_id: @version.id, user_id: current_user.id, action: "CheckIn")
-      #DocumentNotification.document_validate_email(User.can_validate_document, @document).deliver_now
+      DocumentNotification.document_validate_email(User.can_validate_document, @document).deliver_now
 
       flash[:notice] = "CheckIn criado com sucesso"
 
