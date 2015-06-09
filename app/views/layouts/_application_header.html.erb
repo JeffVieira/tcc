@@ -20,11 +20,19 @@
           </ul>
         </li>
       </ul>
-      <form class="navbar-form navbar-left" role="search">
-        <div class="form-group">
-          <input type="text" class="form-control" id="navbar-search-input" placeholder="Search">
+
+      <%= form_tag(homepages_path, {:method=>:get, :id => 'busca_global', :class=>"navbar-form navbar-left", :role=>"search" }) do %>
+        <%= select_tag :folder_id, options_for_select([["<i class='fa'> &#xf07b; D</i>".html_safe, session[:current_folder_id]] ]), {:include_blank=>"<i class='fa'> &#Xf0ac;G </i>".html_safe, :class=>"form-control input-group"} %>
+        <%= select_tag :tag, options_for_select([["Autor","autor"], ["Tag", "tag"], ["Titulo", "titulo"], ["Diretório", "diretorio"]], params[:tag]), {:include_blank=>"default", :class=>"form-control input-group"} %>
+
+        <div class="input-group pull-right">
+          <%= text_field_tag :search_text, params[:search_text], :class=>"form-control", :placeholder=>"busca" %>
+          <span class="input-group-btn" style="width: 0;">
+            <button type="submit" class="btn btn-default ladda-button" data-style='zoom-out' data-spinner-color='#000'><span class="ladda-label">Buscar</span></button>
+          </span>
         </div>
-      </form>
+      <% end %>
+
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown messages-menu">
           <%= link_to vencimento_notifications_path ,title:"Vencimentos" do %>

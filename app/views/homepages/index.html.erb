@@ -36,7 +36,7 @@
   <div class="table-responsive">
     <!-- THE MESSAGES -->
     <table class="table table-mailbox">
-      <% @folder.documents.each do |document| %>
+      <% @documents_search.each do |document| %>
       <tr class="unread">
         <td class="small-col"><input type="checkbox" /></td>
         <td class="small-col"><i class='fa <%= document.icon %>'></i> </td>
@@ -44,7 +44,7 @@
         <td class="subject"><%= link_to document.name, document_path(document) %></td>
         <td class="time"><%= document.created_at.to_s_br %></td>
       </tr>
-      <% end if @folder.present? %>
+      <% end %>
     </table>
   </div><!-- /.table-responsive -->
 </div><!-- /.col (RIGHT) -->

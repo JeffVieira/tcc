@@ -11,6 +11,8 @@ gem 'devise'
 
 gem 'bootstrap-sass'
 gem 'bootstrap-datepicker-rails'
+
+gem "font-awesome-rails"
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier'
 # Use CoffeeScript for .coffee assets and views

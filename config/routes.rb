@@ -46,7 +46,14 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :global_searchs
+  #resources :global_searchs
+
+  resources :homepages do
+    collection do
+      get :search
+    end
+  end
+
   resources :users do
     collection do
       match 'search' => 'users#search', via: [:get, :post], as: :search

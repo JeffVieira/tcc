@@ -90,6 +90,19 @@ class Document < ActiveRecord::Base
     3 => "Aguardando validação",
   }
 
+  def self.search_global(folder_id, tag, text)
+    scope = Document.joins(:user, :folder).where(nil)
+    scope = scope.where "folder_id = ?", folder_id unless folder_id.blank?
+    unless tag.blank? && text.blank?
+      scope = scope.where "users.name ILIKE '%#{text}%'" if tag=="autor"
+      scope = scope.where "documents.name ILIKE '%#{text}%'" if tag=="titulo"
+      scope = scope.where "documents.tag ILIKE '%#{text}%'" if tag=="tag"
+      scope = scope.where "folders.name ILIKE '%#{text}%'" if tag=="diretorio"
+    end
+    scope = scope.where "documents.ocr_text ILIKE '%#{text}%'" if tag.blank? && text.present?
+    scope
+  end
+
   def create_history
     DocumentHistory.create(document_id: id, user_id: user_id, action: "Criado")
   end

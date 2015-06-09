@@ -1,5 +1,5 @@
   <div>
     <canvas id="pdf_preview"></canvas>
-    <%#= image_tag @document.arquivo.url %>
+    <%= image_tag @document.arquivo.url unless @document.pdf? %>
   </div>
 
