@@ -71,7 +71,7 @@ gem 'acts_as_versioned', :git => "https://github.com/technoweenie/acts_as_versio
 gem "chartkick"
 
 gem 'origami', :git => "https://github.com/mobmewireless/origami-pdf.git"
-#gem 'tesseract-ocr', :git=>"https://github.com/meh/ruby-tesseract-ocr.git"
+gem 'tesseract-ocr', :git=>"https://github.com/meh/ruby-tesseract-ocr.git"
 gem 'rpdfbox'
 
 gem 'railroady'
