@@ -16,7 +16,9 @@ module Create
   end
 
   def check_how_to_redirect
-    if session[:current_folder_id].blank?
+    if session[:current_folder_id]=="raiz"
+      redirect_to root_path
+    elsif session[:current_folder_id].blank?
       redirect_to "/" + self.controller_path
     else
       redirect_to (folder_path( Folder.find(session[:current_folder_id])))

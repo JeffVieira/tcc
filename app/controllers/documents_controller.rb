@@ -1,9 +1,9 @@
 class DocumentsController < ApplicationController
   before_filter :get_user_groups,:get_document_type,:get_folders,  :only => [:new, :edit, :create, :update, :checkin]
 
-  after_action only: [:create] do
-    create_history("create")
-  end
+  #after_action only: [:create] do
+  #  create_history("create")
+  #end
 
   layout "home", only: [:show, :started]
 
@@ -52,6 +52,9 @@ class DocumentsController < ApplicationController
         document_type_id: doc_new.document_type_id,
         folder_id: doc_new.folder_id,
         tag: doc_new.tag)
+
+      FileUtils.cp(@document.checkins.last.arquivo.path, @document.arquivo.path)
+      @document.sign_pdf
       create_history("Nova versão aceita")
     else
       @document.update_attributes(status: 1, do_version: false)
@@ -85,7 +88,6 @@ class DocumentsController < ApplicationController
 
   private
     def create_notification
-      binding.pry
       Notification.create(notification_params) unless current_user.id.to_s == notification_params[:autor_id]
     end
 

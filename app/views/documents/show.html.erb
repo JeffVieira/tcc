@@ -18,7 +18,9 @@
         <li class="header"><i class="fa fa-folder-open"></i> <%= @folder.name %></li>
         <li><%= link_to ".." , root_path(current_folder_id: @folder.id) if @folder.present? %></li>
         <% @folder.documents.each do |document| %>
-          <li><%= link_to "<i class='fa #{document.icon}'></i> #{document.name}</a>".html_safe, document_path(document) %></li>
+          <li> <%= link_to  document_path(document) do %>
+              <i class="fa <%= document.icon %>"></i> <%= document.name %>
+            <% end %></li>
         <% end %>
         <li><a href="#"><i class="fa fa-star"></i> Starred</a></li>
       </ul>

@@ -1,5 +1,5 @@
 class DocumentNotification < ApplicationMailer
-  default from: "jeff_malganis@hotmail.com"
+  default from: "ged.tcc@gmail.com"
 
   def document_validate_email(users, document)
     @user = users
