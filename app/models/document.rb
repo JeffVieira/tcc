@@ -1,6 +1,6 @@
 class Document < ActiveRecord::Base
 
-#  require 'tesseract'
+  require 'tesseract'
   require 'origami'
   require 'rpdfbox'
 
