@@ -12,7 +12,7 @@ Ged.documents = {
 
         pub.show_pdf = function(url){
           //PDFJS.workerSrc = '../pdfjs/pdf.worker.js';
-          PDFJS.workerSrc = 'public/assets/pdfjs/pdf.worker-*.js';
+          PDFJS.workerSrc = 'pdf.worker.js';
 
           PDFJS.getDocument(url).then(function getPdfHelloWorld(pdf) {
             //

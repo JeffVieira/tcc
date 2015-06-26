@@ -23,10 +23,7 @@
 //= require knob
 //= require chartkick
 //= require_tree .
-//= stub pdfjs/pdf.js
-//= stub pdfjs/pdf.worker.js
-//= stub pdfjs/compatibility.js
-//= stub pdfjs/jquery-pdfdoc.js
+//= require_tree ../../../vendor/assets/javascripts
 
 $(function() {
 
