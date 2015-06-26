@@ -17,14 +17,16 @@
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.pt-BR.js
 
 //= require cocoon
-//= require pdfjs/pdf.js
-//= require pdfjs/compatibility.js
 //= require select2
 //= require select2_locale_"pt-BR"
 //= require jsapi
 //= require knob
 //= require chartkick
 //= require_tree .
+//= stub pdfjs/pdf.js
+//= stub pdfjs/pdf.worker.js
+//= stub pdfjs/compatibility.js
+//= stub pdfjs/jquery-pdfdoc.js
 
 $(function() {
 
