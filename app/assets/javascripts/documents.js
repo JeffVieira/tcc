@@ -12,7 +12,7 @@ Ged.documents = {
 
         pub.show_pdf = function(url){
           //PDFJS.workerSrc = '../pdfjs/pdf.worker.js';
-          PDFJS.workerSrc = '/vendor/assets/javascripts/pdfjs/pdf.worker.js';
+          PDFJS.workerSrc = '/assets/pdfjs/pdf.worker-a410660a6aba11094a843d9c955629a712f3951d89922cef34235bc74cea6c25.js';
 
           PDFJS.getDocument(url).then(function getPdfHelloWorld(pdf) {
             //
